@@ -1,175 +1,183 @@
 {
-    "Goblins":[
+    "Coloracao":[
+        {"nome":"Verde","status": [2,1,1,2]},
+        {"nome":"Verde Claro","status": [2,2,1,1]},
+        {"nome":"Verde Escuro","status": [2,1,2,1]},
+        {"nome":"Amarelo","status": [1,1,2,2]},
+        {"nome":"Vermelho","status": [1,2,2,1]},
+        {"nome":"Azul","status": [1,2,1,2]}
+    ],"Caracteristica":[
+        {"nome":"Insano","descricao":"Você não tem controle de seus atos. Sempre que o mestre quiser, ele pode pedir um teste de Sorte (dificuldade 5). Se você falhar, o mestre poderá decidir um ato idiota para seu personagem fazer."},
+        {"nome": "Fedorento","descricao":"Você fede e ninguém gosta de ficar perto. Qualquer um que fique por mais de 1 minuto perto de você, poderá ficar nauseado e vomitar."},
+        {"nome":"Gordo","descricao":"Você é obeso e tem problemas em passar em buracos estreitos, se esconder e não consegue correr por muito tempo."},
+        {"nome":"Fala Errado","descricao":"Fala Errado: Você tem algum problema de comunicação (gagueira, língua presa, troca letras, etc) e isso irrita muito os seus companheiros."},
+        {"nome":"Cicatrizes", "descricao":"Você possui muitas cicatrizes de muitas batalhas. As fêmeas goblins nunca olharão para você."},
+        {"nome":"Anomalia","descricao":"Você possui uma anomalia genética (algo comum entre goblins)."}
+    ],"Ocupacao":[
         {
-            "Id": 1,
-            "Nome":"Mercenário",
-            "Armas": 2,
-            "Bonus": ["C", "H"],
-            "Skill": [
-                "",
-                "",
-                ""
+            "nome":"Mercenário",
+            "tipo": 2,
+            "bonus": [1, 0, 1, 0],
+            "skill": [
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
             ]
         }, {
-            "Id": 2,
-            "Nome":"Caçador",
-            "Armas": 1,
-            "Bonus": ["C", "H"],
-            "Skill": [
-                "",
-                "",
-                ""
+            "nome":"Caçador",
+            "tipo": 1,
+            "bonus": [1,0,0,1],
+            "skill": [
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
             ]
         }, {
-            "Id": 3,
-            "Nome":"Gatuno",
-            "Armas": 1,
-            "Bonus": ["C", "H"],
-            "Skill": [
-                "",
-                "",
-                ""
+            "nome":"Gatuno",
+            "tipo": 1,
+            "bonus": [0,1,1,0],
+            "skill": [
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
             ]
         }, {
-            "Id": 4,
-            "Nome":"Líder",
-            "Armas": 2,
-            "Bonus": ["C", "H"],
-            "Skill": [
-                "",
-                "",
-                ""
+            "nome":"Líder",
+            "tipo": 2,
+            "bonus": [1,1,0,0],
+            "skill": [
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
             ]
         }, {
-            "Id": 5,
-            "Nome":"Piromaníaco",
-            "Armas": 3,
-            "Bonus": ["C", "H"],
-            "Skill": [
-                "",
-                "",
-                ""
+            "nome":"Piromaníaco",
+            "tipo": 3,
+            "bonus": [0,0,1,1],
+            "skill": [
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
             ]
         }, {
-            "Id": 6,
-            "Nome":"Xamã",
-            "Armas": "Pesado",
-            "Bonus": ["C", "H"],
-            "Skill": [
-                "",
-                "",
-                ""
+            "nome":"Xamã",
+            "tipo": 4,
+            "bonus": [0,1,0,1],
+            "skill": [
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
+                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
             ]
         }
     ],
     "Armas": [
         {
-            "id": 1,
+            "code": 1,
             "nome": "Adaga(s)",
             "dano": 2,
             "protecao": 0,
             "distancia": false,
             "arremesar": true
         }, {
-            "id": 2,
+            "code": 2,
             "nome":"Escudo",
             "dano": 0,
             "protecao": 1,
             "distancia": false,
             "arremesar": false
         }, {
-            "id": 3,
+            "code": 3,
             "nome": "Arco Simples",
             "dano": 2,
             "protecao": 0,
             "distancia": true,
             "arremesar": false
         },{
-            "id": 4,
+            "code": 4,
             "nome": "Arco Composto",
             "dano": 3,
             "protecao": 0,
             "distancia": true,
             "arremesar": false
         },{
-            "id": 5,
+            "code": 5,
             "nome": "Besta",
             "dano": 3,
             "protecao": 0,
             "distancia": true,
             "arremesar": false
         },{
-            "id": 6,
+            "code": 6,
             "nome": "Elmo",
             "dano": 0,
             "protecao": 1,
             "distancia": false,
             "arremesar": false
         },{
-            "id": 7,
+            "code": 7,
             "nome": "Espada",
             "dano": 3,
             "protecao": 0,
             "distancia": false,
             "arremesar": false
         },{
-            "id": 8,
+            "code": 8,
             "nome": "Machado",
             "dano": 4,
             "protecao": 0,
             "distancia": false,
             "arremesar": false
         },{
-            "id": 9,
+            "code": 9,
             "nome": "Machadinhas",
             "dano": 3,
             "protecao": 0,
             "distancia": false,
             "arremesar": true
         },{
-            "id": 10,
+            "code": 10,
             "nome": "Espadona",
             "dano": 5,
             "protecao": 0,
             "distancia": false,
             "arremesar": false
         },{
-            "id": 11,
+            "code": 11,
             "nome": "Armadura",
             "dano": 0,
             "protecao": 1,
             "distancia": false,
             "arremesar": false
         },{
-            "id": 12,
+            "code": 12,
             "nome": "Pistola",
             "dano": 4,
             "protecao": 0,
             "distancia": true,
             "arremesar": false
         },{
-            "id": 13,
+            "code": 13,
             "nome": "Galinha Explosiva",
             "dano": 4,
             "protecao": 0,
             "distancia": true,
             "arremesar": false
         },{
-            "id": 14,
+            "code": 14,
             "nome": "Barril de polvora",
             "dano": 5,
             "protecao": 0,
             "distancia": true,
             "arremesar": false
         },{
-            "id": 15,
+            "code": 15,
             "nome": "Canhão",
             "dano": 8,
             "protecao": 0,
             "distancia": true,
             "arremesar": false
         },{
-            "id": 16,
+            "code": 16,
             "nome": "Cajado",
             "dano": 1,
             "protecao": 0,
@@ -179,24 +187,43 @@
     ],
     "Sets": [
         {
-            "id": 1,
+            "code": 1,
             "nome": "Leve",
             "sets": [
-                {"id":1, "qtd":1}
+                [{"code":1,"qtd":2}],
+                [{"code":1,"qtd":1},{"code":2,"qtd":1}],
+                [{"code":3,"qtd":1}],
+                [{"code":4,"qtd":1}],
+                [{"code":1,"qtd":4}],
+                [{"code":5,"qtd":1}]
             ]
-        },
-        {
-            "id": 2,
+        }, {
+            "code": 2,
             "nome": "Pesado",
             "sets": [
-                {"id":1, "qtd":1}
+                [{"code":1,"qtd":2}],
+                [{"code":1,"qtd":1},{"code":2,"qtd":1}],
+                [{"code":3,"qtd":1}],
+                [{"code":4,"qtd":1}],
+                [{"code":1,"qtd":4}],
+                [{"code":5,"qtd":1}]
             ]
-        },
-        {
-            "id": 3,
+        }, {
+            "code": 3,
             "nome": "Explosivo",
             "sets": [
-                {"id":1, "qtd":1}
+                [{"code":1,"qtd":2}],
+                [{"code":1,"qtd":1},{"code":2,"qtd":1}],
+                [{"code":3,"qtd":1}],
+                [{"code":4,"qtd":1}],
+                [{"code":1,"qtd":4}],
+                [{"code":5,"qtd":1}]
+            ]
+        }, {
+            "code": 3,
+            "nome": "Magico",
+            "sets": [
+                [{"code":16,"qtd":1}]
             ]
         }
     ]

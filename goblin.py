@@ -1,30 +1,34 @@
 from enum import Enum
-import random
+import json, random
+from pprint import pprint
 
-class Coloracao(Enum):
-    VERDE_CLARO = 1
-    VERDE = 2
-    VERDE_ESCURO = 3
-    AMARELO = 4
-    VERMELHO = 5
-    AZUL = 6
+class Equipamento():
+    code = 10
+    nome = "Nenhum"
+    dano = 0
+    protecao = 0
+    distancia = False
+    arremesar = False
+    qtd = 0
 
-class Ocupacao(Enum):
+    def __init__(self, arma):
 
-    MERCENARIO = 1
-    CACADOR = 2
-    GATUNO = 3
-    LIDER = 4
-    PIROMANIACO = 5
-    XAMA = 6
+        self.code = arma["code"]
+        self.nome = arma["nome"]
+        self.dano = arma["dano"]
+        self.protecao = arma["protecao"]
+        self.distancia = arma["distancia"]
+        self.arremesar = arma["arremesar"]
 
-class Caracteristica(Enum):
-    INSANO = 1
-    FEDORENTO = 2
-    CICATRIZES = 3
-    GORDO = 4
-    FALA_ERRADO = 5
-    ANOMALIA = 6
+    def set_qtd(self, qtd):
+        self.qtd = qtd
+
+class Database():
+    coloracao = []
+    ocupacao = []
+    carac = []
+    sets = []
+    armas = []
 
 class Goblin():
     combate = 0
@@ -34,15 +38,41 @@ class Goblin():
     equipamento = []
     vitalidade = 4
     anomalia = []
+    db = Database()
 
-    def __init__(self):
-        self.cor = random.randint(1, 6)
-        self.ocupacao = random.randint(1, 6)
-        self.caracteristica = random.randint(1, 6)
+    def __init__(self, json_file):
+        json_decoded = json.load(open(json_file))
+        self.db.coloracao = json_decoded['Coloracao']
+        self.db.ocupacao = json_decoded['Ocupacao']
+        self.db.carac = json_decoded['Caracteristica']
+        self.db.sets = json_decoded['Sets']
+        self.db.armas = json_decoded['Armas']
+        #print(self.database)
+        print(self.db)
+        self.criarGoblin()
+
+    def criarGoblin(self):
+
+        self.cor = self.db.coloracao[random.randint(1, len(self.db.coloracao))-1]
+        self.ocupacao = self.db.ocupacao[random.randint(1, len(self.db.ocupacao))-1]
+        self.caracteristica = self.db.carac[random.randint(1, len(self.db.carac))-1]
+
+        self.combate = self.ocupacao['bonus'][0]
+        self.conhecimento = self.ocupacao['bonus'][1]
+        self.habilidade = self.ocupacao['bonus'][2]
+        self.sorte = self.ocupacao['bonus'][3]
+
+        self.tipo  = self.ocupacao['tipo']
+        for equip_set in self.db.sets:
+            if equip_set['code'] == self.tipo:
+                actualSet = equip_set['sets'][random.randint(1, len(equip_set['sets']))-1]
+
+
         self.nivel = 1
         self.nome = random.choice(['Sp', 'Cr', 'Bu', 'Ut', 'An', 'Om'])
         self.nome += random.choice(['or', 'ut', 'ar', 'an', 'ot', 'ec'])
-        self.set_anomalia()
+        if self.caracteristica == 6:
+            self.set_anomalia()
 
     def set_anomalia(self):
         dado = random.randint(2,12)
@@ -72,16 +102,4 @@ class Goblin():
     def get_protecao(self):
         pass
 
-    def get_text_carac(self):
-        if self.caracteristica == Caracteristica.INSANO:
-            return "Insano"
-        if self.caracteristica == Caracteristica.FEDORENTO:
-            return "Fedorento"
-        if self.caracteristica == Caracteristica.CICATRIZES:
-            return "Cicatrizes"
-        if self.caracteristica == Caracteristica.GORDO:
-            return "Gordo"
-        if self.caracteristica == Caracteristica.FALA_ERRADO:
-            return "Fala errado"
-        if self.caracteristica == Caracteristica.ANOMALIA:
-            return "Anomalia ("+(', '.join(self.anomalia)+")"
+        
