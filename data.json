@@ -1,0 +1,203 @@
+{
+    "Goblins":[
+        {
+            "Id": 1,
+            "Nome":"Mercenário",
+            "Armas": 2,
+            "Bonus": ["C", "H"],
+            "Skill": [
+                "",
+                "",
+                ""
+            ]
+        }, {
+            "Id": 2,
+            "Nome":"Caçador",
+            "Armas": 1,
+            "Bonus": ["C", "H"],
+            "Skill": [
+                "",
+                "",
+                ""
+            ]
+        }, {
+            "Id": 3,
+            "Nome":"Gatuno",
+            "Armas": 1,
+            "Bonus": ["C", "H"],
+            "Skill": [
+                "",
+                "",
+                ""
+            ]
+        }, {
+            "Id": 4,
+            "Nome":"Líder",
+            "Armas": 2,
+            "Bonus": ["C", "H"],
+            "Skill": [
+                "",
+                "",
+                ""
+            ]
+        }, {
+            "Id": 5,
+            "Nome":"Piromaníaco",
+            "Armas": 3,
+            "Bonus": ["C", "H"],
+            "Skill": [
+                "",
+                "",
+                ""
+            ]
+        }, {
+            "Id": 6,
+            "Nome":"Xamã",
+            "Armas": "Pesado",
+            "Bonus": ["C", "H"],
+            "Skill": [
+                "",
+                "",
+                ""
+            ]
+        }
+    ],
+    "Armas": [
+        {
+            "id": 1,
+            "nome": "Adaga(s)",
+            "dano": 2,
+            "protecao": 0,
+            "distancia": false,
+            "arremesar": true
+        }, {
+            "id": 2,
+            "nome":"Escudo",
+            "dano": 0,
+            "protecao": 1,
+            "distancia": false,
+            "arremesar": false
+        }, {
+            "id": 3,
+            "nome": "Arco Simples",
+            "dano": 2,
+            "protecao": 0,
+            "distancia": true,
+            "arremesar": false
+        },{
+            "id": 4,
+            "nome": "Arco Composto",
+            "dano": 3,
+            "protecao": 0,
+            "distancia": true,
+            "arremesar": false
+        },{
+            "id": 5,
+            "nome": "Besta",
+            "dano": 3,
+            "protecao": 0,
+            "distancia": true,
+            "arremesar": false
+        },{
+            "id": 6,
+            "nome": "Elmo",
+            "dano": 0,
+            "protecao": 1,
+            "distancia": false,
+            "arremesar": false
+        },{
+            "id": 7,
+            "nome": "Espada",
+            "dano": 3,
+            "protecao": 0,
+            "distancia": false,
+            "arremesar": false
+        },{
+            "id": 8,
+            "nome": "Machado",
+            "dano": 4,
+            "protecao": 0,
+            "distancia": false,
+            "arremesar": false
+        },{
+            "id": 9,
+            "nome": "Machadinhas",
+            "dano": 3,
+            "protecao": 0,
+            "distancia": false,
+            "arremesar": true
+        },{
+            "id": 10,
+            "nome": "Espadona",
+            "dano": 5,
+            "protecao": 0,
+            "distancia": false,
+            "arremesar": false
+        },{
+            "id": 11,
+            "nome": "Armadura",
+            "dano": 0,
+            "protecao": 1,
+            "distancia": false,
+            "arremesar": false
+        },{
+            "id": 12,
+            "nome": "Pistola",
+            "dano": 4,
+            "protecao": 0,
+            "distancia": true,
+            "arremesar": false
+        },{
+            "id": 13,
+            "nome": "Galinha Explosiva",
+            "dano": 4,
+            "protecao": 0,
+            "distancia": true,
+            "arremesar": false
+        },{
+            "id": 14,
+            "nome": "Barril de polvora",
+            "dano": 5,
+            "protecao": 0,
+            "distancia": true,
+            "arremesar": false
+        },{
+            "id": 15,
+            "nome": "Canhão",
+            "dano": 8,
+            "protecao": 0,
+            "distancia": true,
+            "arremesar": false
+        },{
+            "id": 16,
+            "nome": "Cajado",
+            "dano": 1,
+            "protecao": 0,
+            "distancia": false,
+            "arremesar": false
+        }
+    ],
+    "Sets": [
+        {
+            "id": 1,
+            "nome": "Leve",
+            "sets": [
+                {"id":1, "qtd":1}
+            ]
+        },
+        {
+            "id": 2,
+            "nome": "Pesado",
+            "sets": [
+                {"id":1, "qtd":1}
+            ]
+        },
+        {
+            "id": 3,
+            "nome": "Explosivo",
+            "sets": [
+                {"id":1, "qtd":1}
+            ]
+        }
+    ]
+}
