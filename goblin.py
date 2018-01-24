@@ -23,6 +23,11 @@ class Equipamento():
     def set_qtd(self, qtd):
         self.qtd = qtd
 
+    def __str__(self):
+        return '{}-{} ({},{},{},{})'.format(
+            str(self.code), self.nome, str(self.dano),
+            str(self.protecao), str(self.distancia), str(self.arremesar))
+
 class Database():
     coloracao = []
     ocupacao = []
@@ -71,8 +76,6 @@ class Goblin():
         self.nome += random.choice(['or', 'ut', 'ar', 'an', 'ot', 'ec'])
         if self.caracteristica == self.db.carac[5]:
             self.set_anomalia()
-        pprint(self.caracteristica)
-        pprint(self.anomalia)
 
     def set_anomalia(self):
         dado = random.randint(2,12)
@@ -104,5 +107,3 @@ class Goblin():
         for eqp in self.equipamento:
             protecao += eqp.protecao
         return protecao
-
-        
