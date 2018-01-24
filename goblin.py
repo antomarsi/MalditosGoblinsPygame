@@ -48,7 +48,6 @@ class Goblin():
         self.db.sets = json_decoded['Sets']
         self.db.armas = json_decoded['Armas']
         #print(self.database)
-        print(self.db)
         self.criarGoblin()
 
     def criarGoblin(self):
@@ -61,18 +60,19 @@ class Goblin():
         self.conhecimento = self.ocupacao['bonus'][1]
         self.habilidade = self.ocupacao['bonus'][2]
         self.sorte = self.ocupacao['bonus'][3]
-
         self.tipo  = self.ocupacao['tipo']
         for equip_set in self.db.sets:
             if equip_set['code'] == self.tipo:
-                actualSet = equip_set['sets'][random.randint(1, len(equip_set['sets']))-1]
-
-
+                for weapon in equip_set['sets'][random.randint(1, len(equip_set['sets']))-1]:
+                    for i in range(weapon['qtd']):
+                        self.equipamento.append(Equipamento(self.db.armas[weapon['code']-1]))
         self.nivel = 1
         self.nome = random.choice(['Sp', 'Cr', 'Bu', 'Ut', 'An', 'Om'])
         self.nome += random.choice(['or', 'ut', 'ar', 'an', 'ot', 'ec'])
-        if self.caracteristica == 6:
+        if self.caracteristica == self.db.carac[5]:
             self.set_anomalia()
+        pprint(self.caracteristica)
+        pprint(self.anomalia)
 
     def set_anomalia(self):
         dado = random.randint(2,12)
@@ -100,6 +100,9 @@ class Goblin():
         pass
 
     def get_protecao(self):
-        pass
+        protecao = 0
+        for eqp in self.equipamento:
+            protecao += eqp.protecao
+        return protecao
 
         
