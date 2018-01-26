@@ -45,6 +45,8 @@ class Goblin():
     anomalia = []
     db = Database()
 
+    changed = True
+
     def __init__(self, json_file):
         json_decoded = json.load(open(json_file))
         self.db.coloracao = json_decoded['Coloracao']
@@ -107,3 +109,6 @@ class Goblin():
         for eqp in self.equipamento:
             protecao += eqp.protecao
         return protecao
+
+    def get_changed(self):
+        return self.changed

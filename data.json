@@ -1,11 +1,11 @@
 {
     "Coloracao":[
-        {"nome":"Verde","status": [2,1,1,2]},
-        {"nome":"Verde Claro","status": [2,2,1,1]},
-        {"nome":"Verde Escuro","status": [2,1,2,1]},
-        {"nome":"Amarelo","status": [1,1,2,2]},
-        {"nome":"Vermelho","status": [1,2,2,1]},
-        {"nome":"Azul","status": [1,2,1,2]}
+        {"nome":"Verde","status": [2,1,1,2], "rgb": [0, 127, 0]},
+        {"nome":"Verde Claro","status": [2,2,1,1], "rgb": [60, 127, 60]},
+        {"nome":"Verde Escuro","status": [2,1,2,1], "rgb": [0, 60, 0]},
+        {"nome":"Amarelo","status": [1,1,2,2], "rgb": [127, 127, 0]},
+        {"nome":"Vermelho","status": [1,2,2,1], "rgb": [127, 0, 0]},
+        {"nome":"Azul","status": [1,2,1,2], "rgb": [0, 0, 127]}
     ],"Caracteristica":[
         {"nome":"Insano","descricao":"Você não tem controle de seus atos. Sempre que o mestre quiser, ele pode pedir um teste de Sorte (dificuldade 5). Se você falhar, o mestre poderá decidir um ato idiota para seu personagem fazer."},
         {"nome": "Fedorento","descricao":"Você fede e ninguém gosta de ficar perto. Qualquer um que fique por mais de 1 minuto perto de você, poderá ficar nauseado e vomitar."},
