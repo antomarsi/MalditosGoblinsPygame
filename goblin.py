@@ -1,5 +1,5 @@
 from enum import Enum
-import json, random
+import json, random, re
 from pprint import pprint
 
 class Equipamento():
@@ -63,10 +63,10 @@ class Goblin():
         self.ocupacao = self.db.ocupacao[random.randint(1, len(self.db.ocupacao))-1]
         self.caracteristica = self.db.carac[random.randint(1, len(self.db.carac))-1]
 
-        self.combate = self.ocupacao['bonus'][0]
-        self.conhecimento = self.ocupacao['bonus'][1]
-        self.habilidade = self.ocupacao['bonus'][2]
-        self.sorte = self.ocupacao['bonus'][3]
+        self.combate = self.ocupacao['bonus'][0] + self.cor['status'][0]
+        self.conhecimento = self.ocupacao['bonus'][1] + self.cor['status'][1]
+        self.habilidade = self.ocupacao['bonus'][2] + self.cor['status'][2]
+        self.sorte = self.ocupacao['bonus'][3] + self.cor['status'][3]
         self.tipo  = self.ocupacao['tipo']
         for equip_set in self.db.sets:
             if equip_set['code'] == self.tipo:
@@ -76,26 +76,36 @@ class Goblin():
         self.nivel = 1
         self.nome = random.choice(['Sp', 'Cr', 'Bu', 'Ut', 'An', 'Om'])
         self.nome += random.choice(['or', 'ut', 'ar', 'an', 'ot', 'ec'])
+        self.caracteristica = self.db.carac[5]
         if self.caracteristica == self.db.carac[5]:
             self.set_anomalia()
 
     def set_anomalia(self):
         dado = random.randint(2,12)
-        if dado == 2 or dado == 3:
+        if (dado == 2 or dado == 3) and "Manchas rosas" not in self.anomalia:
             self.anomalia.append("Manchas rosas")
-        if dado == 4:
+        if dado == 4 and "Orelhas no sovaco" not in self.anomalia:
             self.anomalia.append("Orelhas no sovaco")
-        if dado == 5:
+        if dado == 5 and "Corcunda" not in self.anomalia:
             self.anomalia.append("Corcunda")
-        if dado == 6:
+        if dado == 6 and "Braço extra atrofiado" not in self.anomalia:
             self.anomalia.append("Braço extra atrofiado")
+
         if dado == 7:
-            self.anomalia.append(str(random.randint(1,6))+" Olhos")
-        if dado == 8:
+            has_eyes = False
+            for anomalia in self.anomalia:
+                if not anomalia or any(re.match("/\d Olhos/g", anomalia)):
+                    has_eyes = True
+            if not has_eyes:
+                self.anomalia.append(str(random.randint(1, 6))+" Olhos")
+            else:
+                self.set_anomalia()
+    
+        if dado == 8 and "Olhos Gigantes" not in self.anomalia:
             self.anomalia.append("Olhos Gigantes")
-        if dado == 9:
+        if dado == 9 and "Mãos Gigantes" not in self.anomalia:
             self.anomalia.append("Mãos Gigantes")
-        if dado == 10:
+        if dado == 10 and "Duas Cabeças" not in self.anomalia:
             self.anomalia.append("Duas Cabeças")
         if dado == 11 or dado == 12:
             self.set_anomalia()
@@ -112,3 +122,13 @@ class Goblin():
 
     def get_changed(self):
         return self.changed
+
+    def take_damage(self, dmg = 1):
+        if self.vitalidade > 0:
+            self.vitalidade -= dmg
+            self.changed = True
+
+    def take_heal(self, dmg = 1):
+        if self.vitalidade < 4:
+            self.vitalidade += dmg
+            self.changed = True
