@@ -157,8 +157,12 @@ class Engine:
         linha += 16
         panel.blit(FONT_SML.render('Caracteristica: '+str(goblin.caracteristica['nome']), True, (0, 0, 0)), [180, linha])
         linha += 16
-        #panel.blit(FONT_SML.render('Arma: '+str(goblin.equipamento[0].nome)+' Dano: '+str(goblin.equipamento[0].dano), True, (0, 0, 0)), [180, linha])
-        #linha += 16
+        panel.blit(FONT_SML.render('Armas: ', True, (0, 0, 0)), [180, linha])
+        linha += 16
+        for index, arma in  enumerate(goblin.equipamento):
+            panel.blit(FONT_SML.render(str(arma.nome)+' Dano: '+str(arma.dano), True, (0, 0, 0)), [180, linha])            
+            linha += 16
+
         panel.blit(FONT_SML.render('Ocupação: '+str(goblin.ocupacao['nome']), True, (0, 0, 0)), [180, linha])
         linha += 16
         panel.blit(FONT_SML.render('Especiais: ', True, (0, 0, 0)), [180, linha])
