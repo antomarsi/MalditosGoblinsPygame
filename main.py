@@ -147,16 +147,19 @@ class Engine:
         sprites.add(goblinsprite)
         
         #texts
-        text = FONT_MED.render('Level: '+str(goblin.nivel), True, (0,0,0))
+        text = FONT_MED.render('Nome: '+str(goblin.nome)+' - Level: '+str(goblin.nivel), True, (0,0,0))
         panel.blit(text, [180, 10])
 
         #cor
         panel.blit(FONT_SML.render('Cor: '+str(goblin.cor['nome']), True, (0, 0, 0)), [180, 32])
         panel.blit(FONT_SML.render('Caracteristica: '+str(goblin.caracteristica['nome']), True, (0, 0, 0)), [180, 48])
+        panel.blit(FONT_SML.render('Arma: '+str(goblin.equipamento[0].nome)+' Dano: '+str(goblin.equipamento[0].dano), True, (0, 0, 0)), [180, 64])
+        panel.blit(FONT_SML.render('Ocupação: '+str(goblin.ocupacao['nome']), True, (0, 0, 0)), [180, 80])
+
         if goblin.anomalia:
-            panel.blit(FONT_SML.render('Anomalias: ', True, (0, 0, 0)), [180, 64])
+            panel.blit(FONT_SML.render('Anomalias: ', True, (0, 0, 0)), [180, 96])
             for index, anomalia in enumerate(goblin.anomalia):
-                panel.blit(FONT_SML.render(anomalia, True, (0,0,0)), [200, 80+(10*index)])
+                panel.blit(FONT_SML.render(anomalia, True, (0,0,0)), [200, 112+(10*index)])
         #lives
         hearth_full = pygame.transform.smoothscale(SPRITE['HEART'][1], [50, 50])
         hearth_empty = pygame.transform.smoothscale(SPRITE['HEART'][0], [50, 50])
