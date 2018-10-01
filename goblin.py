@@ -68,6 +68,14 @@ class Goblin():
         self.habilidade = self.ocupacao['bonus'][2] + self.cor['status'][2]
         self.sorte = self.ocupacao['bonus'][3] + self.cor['status'][3]
         self.tipo  = self.ocupacao['tipo']
+        self.skill = []
+
+        self.skill.append(self.ocupacao['skill'][0])
+        self.skill.append(self.ocupacao['skill'][1])
+        self.skill.append(self.ocupacao['skill'][2])
+
+        print(self.skill)
+
         for equip_set in self.db.sets:
             if equip_set['code'] == self.tipo:
                 for weapon in equip_set['sets'][random.randint(1, len(equip_set['sets']))-1]:

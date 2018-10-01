@@ -38,7 +38,7 @@
             "bonus": [0,1,1,0],
             "skill": [
                 {"title":"Roubar","descricao":"Você pode roubar sem ser visto se vencer um teste resistido de Habilidade contra a vítima."},
-                {"title":"Armar Armadilhas","descricao":"Você  pode  fazer uma  armadilha  em  qualquer  lugar  se  tiver alguns materiais. A pessoa terá que passar em um teste de Sorte (dificuldade 5) para não cair na sua armadilha"},
+                {"title":"Armar Armadilhas","descricao":"Você  pode  fazer uma  armadilha  em  qualquer  lugar  \nse  tiver alguns materiais. A pessoa terá que passar em um teste de Sorte (dificuldade 5) para não cair na sua armadilha"},
                 {"title":"Ataque  Furtivo","descricao":"Se você não foi visto, você pode fazer um ataque furtivo. Se acertar, a vitima deverá fazer um teste de Sorte (Dificuldade 5). Se ela falhar ela morrerá."}
             ]
         }, {

@@ -3,8 +3,6 @@ from pygame.locals import *
 import goblin
 from PIL import Image
 
-
-
 def getTimeStr():
     curTime = time.localtime(time.time())
     curTimeStr = "%s.%s.%s, %s:%s" %(curTime.tm_mday, curTime.tm_mon, curTime.tm_year, curTime.tm_hour, '%02d' % curTime.tm_min, )
@@ -51,6 +49,8 @@ pygame.font.init()
 FONT_LRG = pygame.font.Font('font/GoblinOne.otf', 24)
 FONT_MED = pygame.font.Font('font/GoblinOne.otf', 16)
 FONT_SML = pygame.font.Font('font/GoblinOne.otf', 8)
+FONT_VR_SML = pygame.font.Font('font/GoblinOne.otf', 7)
+
 class Sprite(pygame.sprite.Sprite):
     def __init__(self, image_file, location):
         pygame.sprite.Sprite.__init__(self)  #call Sprite initializer
@@ -121,7 +121,7 @@ class Engine:
         sprites = pygame.sprite.Group()
 
         life_button = pygame.transform.smoothscale(SPRITE['BUTTON']["ARROW"][0], [40, 80])
-        life_button = Sprite(pygame.transform.rotate(life_button, 90), [250, 180])
+        life_button = Sprite(pygame.transform.rotate(life_button, 90), [250, 0])
         button_rect = life_button.rect
         if button_rect.collidepoint(mouse[0]-20, mouse[1]-12) and self.click == 1:
             if (mouse[0] <= button_rect.centerx+10):
@@ -139,27 +139,50 @@ class Engine:
     def draw_panel(self, goblin):
         panel = pygame.Surface([int(self.interiorSize[0]), int(self.interiorSize[1])])
         panel.fill((200,180,140))
+        linha = 50
 
         sprites = pygame.sprite.Group()
         
         goblinsprite  = blit_tinted(SPRITE["GOBLIN_GREY"], goblin.cor['rgb']);
-        goblinsprite = Sprite(pygame.transform.smoothscale(goblinsprite, [180, 180]),[0,0])
+        goblinsprite = Sprite(pygame.transform.smoothscale(goblinsprite, [180, 180]),[0,linha])
         sprites.add(goblinsprite)
+        
         
         #texts
         text = FONT_MED.render('Nome: '+str(goblin.nome)+' - Level: '+str(goblin.nivel), True, (0,0,0))
-        panel.blit(text, [180, 10])
-
+        panel.blit(text, [180, linha])  
+        linha += 16      
         #cor
-        panel.blit(FONT_SML.render('Cor: '+str(goblin.cor['nome']), True, (0, 0, 0)), [180, 32])
-        panel.blit(FONT_SML.render('Caracteristica: '+str(goblin.caracteristica['nome']), True, (0, 0, 0)), [180, 48])
-        panel.blit(FONT_SML.render('Arma: '+str(goblin.equipamento[0].nome)+' Dano: '+str(goblin.equipamento[0].dano), True, (0, 0, 0)), [180, 64])
-        panel.blit(FONT_SML.render('Ocupação: '+str(goblin.ocupacao['nome']), True, (0, 0, 0)), [180, 80])
+        panel.blit(FONT_SML.render('Cor: '+str(goblin.cor['nome']), True, (0, 0, 0)), [180, linha])
+        linha += 16
+        panel.blit(FONT_SML.render('Caracteristica: '+str(goblin.caracteristica['nome']), True, (0, 0, 0)), [180, linha])
+        linha += 16
+        #panel.blit(FONT_SML.render('Arma: '+str(goblin.equipamento[0].nome)+' Dano: '+str(goblin.equipamento[0].dano), True, (0, 0, 0)), [180, linha])
+        #linha += 16
+        panel.blit(FONT_SML.render('Ocupação: '+str(goblin.ocupacao['nome']), True, (0, 0, 0)), [180, linha])
+        linha += 16
+        panel.blit(FONT_SML.render('Especiais: ', True, (0, 0, 0)), [180, linha])
+        linha += 16
+
+        for index, skill in enumerate(goblin.skill):
+            level = 'Level '+str(index+1)
+            panel.blit(FONT_SML.render(level, True, (0, 0, 0)), [180, linha])
+            linha += 16
+            panel.blit(FONT_SML.render(skill['title'], True, (0,0,0)), [200, linha])
+            linha += 16
+            if((len(skill['descricao'])) > 5):
+                panel.blit(FONT_VR_SML.render(skill['descricao'][:int(len(skill['descricao'])/2)], True, (10,10,10)), [200, linha])
+                linha += 16
+                panel.blit(FONT_VR_SML.render(skill['descricao'][int(len(skill['descricao'])/2):], True, (10,10,10)), [200, linha])
+                linha += 16
 
         if goblin.anomalia:
-            panel.blit(FONT_SML.render('Anomalias: ', True, (0, 0, 0)), [180, 96])
+            panel.blit(FONT_SML.render('Anomalias: ', True, (0, 0, 0)), [180, linha])
+            linha += 16
             for index, anomalia in enumerate(goblin.anomalia):
-                panel.blit(FONT_SML.render(anomalia, True, (0,0,0)), [200, 112+(10*index)])
+                panel.blit(FONT_SML.render(anomalia, True, (0,0,0)), [200, linha])
+                linha += 16
+
         #lives
         hearth_full = pygame.transform.smoothscale(SPRITE['HEART'][1], [50, 50])
         hearth_empty = pygame.transform.smoothscale(SPRITE['HEART'][0], [50, 50])
@@ -169,7 +192,7 @@ class Engine:
                 vida = hearth_full
             else:
                 vida = hearth_empty
-            sprites.add(Sprite(vida,[(50*(hp-1))+(10*hp),180]))
+            sprites.add(Sprite(vida,[(50*(hp-1))+(10*hp),0]))
 
         #STATUS
         status = [
@@ -179,14 +202,14 @@ class Engine:
             ["SOR", goblin.sorte]
         ]
         for index, stat in enumerate(status):
-            panel.blit(FONT_LRG.render(stat[0], True, (0, 0, 0)), [32, (self.interiorSize[0]/2)+(40*index)])
+            panel.blit(FONT_LRG.render(stat[0], True, (0, 0, 0)), [32, linha+(40*index)])
             for value in range(1, 5):
                 #stat[1]
                 if value <= stat[1]:
                     sprite = pygame.transform.smoothscale(SPRITE['STAR'][1], [30, 30])
                 else:
                     sprite = pygame.transform.smoothscale(SPRITE['STAR'][0], [30, 30])
-                sprites.add(Sprite(sprite,[60+(52*value), (self.interiorSize[0]/2)+(40*index)-5]))
+                sprites.add(Sprite(sprite,[60+(52*value), linha+(40*index)-5]))
 
 
         sprites.draw(panel)
