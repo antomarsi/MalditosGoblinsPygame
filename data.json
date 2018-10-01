@@ -20,53 +20,53 @@
             "bonus": [1, 0, 1, 0],
             "skill": [
                 {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
+                {"title":"Ataque  Brutal","descricao":"Uma vez ao dia você pode fazer um ataque brutal, que causa o dobro de dano na vítima"},
+                {"title":"Ataque  Fatal","descricao":"Uma  vez  ao  dia  você pode fazer um ataque fatal. Se acertar, a vitima deverá vencer um teste de Sorte (Dificuldade  5)  ou  morrerá  imediatamente."}
             ]
         }, {
             "nome":"Caçador",
             "tipo": 1,
             "bonus": [1,0,0,1],
             "skill": [
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
+                {"title":"Rastrear","descricao":"Com  um  teste  bem  sucedido  de Conhecimento (dificuldade 3) você pode rastrear qualquer criatura."},
+                {"title":"Mira  Certeira","descricao":"Você ignora a proteção dos seus oponentes."},
+                {"title":"Tiro  Fatal","descricao":"Uma vez ao dia você pode fazer  um  ataque  à  distância  fatal.  Se acertar, a vitima deverá  vencer um teste de Sorte (Dificuldade 5) ou morrerá imediatamente."}
             ]
         }, {
             "nome":"Gatuno",
             "tipo": 1,
             "bonus": [0,1,1,0],
             "skill": [
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
+                {"title":"Roubar","descricao":"Você pode roubar sem ser visto se vencer um teste resistido de Habilidade contra a vítima."},
+                {"title":"Armar Armadilhas","descricao":"Você  pode  fazer uma  armadilha  em  qualquer  lugar  \nse  tiver alguns materiais. A pessoa terá que passar em um teste de Sorte (dificuldade 5) para não cair na sua armadilha"},
+                {"title":"Ataque  Furtivo","descricao":"Se você não foi visto, você pode fazer um ataque furtivo. Se acertar, a vitima deverá fazer um teste de Sorte (Dificuldade 5). Se ela falhar ela morrerá."}
             ]
         }, {
             "nome":"Líder",
             "tipo": 2,
             "bonus": [1,1,0,0],
             "skill": [
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
+                {"title":"Grito  de  Guerra","descricao":"Uma vez ao dia você pode  dar  um  grito  que  permitirá  que  todos  seus  aliados  rolem  1  dado  a  mais para se esquivar até final da batalha."},
+                {"title":"Ataque  Brutal","descricao":"Uma vez ao dia você pode fazer um ataque brutal, que causa o dobro de dano na vítima."},
+                {"title":"Ataque Fatal","descricao":"Uma  vez  ao  dia  você pode fazer um ataque fatal. Se acertar, a vitima deverá fazer um teste de Sorte (Dificuldade 5). Se ela alhar ela morrerá."}
             ]
         }, {
             "nome":"Piromaníaco",
             "tipo": 3,
             "bonus": [0,0,1,1],
             "skill": [
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
+                {"title":"Resistência","descricao":"Você pode fazer um teste de Sorte (dificuldade 5) quando receber dano  de  fogo  ou  explosão  de  fogo.  Se vencer, você não recebe dano."},
+                {"title":"Suicídio Explosivo","descricao":"Usando sua arma, você pode se explodir e matar TODOS os que estiverem na área da explosão."},
+                {"title":"Imunidade","descricao":"Você nunca recebe dano com fogo ou explosão"}
             ]
         }, {
             "nome":"Xamã",
             "tipo": 4,
             "bonus": [0,1,0,1],
             "skill": [
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."},
-                {"title":"Mestre das Armas","descricao":"Você sempre rola +1 dado em todos os ataques que você fizer lutando com sua arma favorita (Escolha uma)."}
+                {"title":"Raio  de  Energia","descricao":"Você pode gastar pontos de magia para fazer ataques a distância. Cada ponto gasto causará um ponto  de  dano  (pode  gastar  mais  para fazer ataque com mais dano)."},
+                {"title":"Cura","descricao":"Você  pode  gastar  seus  pontos de magia para curar seus aliados. Cada ponto  de  magia  recupera  um  ponto  de  vitalidade."},
+                {"title":"Petrificar","descricao":"Gastando 6 pontos de magia você pode paralisar qualquer criatura"}
             ]
         }
     ],
