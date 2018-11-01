@@ -74,7 +74,7 @@ class Goblin():
         self.skill.append(self.ocupacao['skill'][1])
         self.skill.append(self.ocupacao['skill'][2])
 
-        print(self.skill)
+        # print(self.skill)
 
         for equip_set in self.db.sets:
             if equip_set['code'] == self.tipo:
@@ -101,9 +101,9 @@ class Goblin():
 
         if dado == 7:
             has_eyes = False
-            for anomalia in self.anomalia:
-                if not anomalia or any(re.match("/\d Olhos/g", anomalia)):
-                    has_eyes = True
+            # for anomalia in self.anomalia:
+            # if not anomalia or any(re.match("/\d Olhos/g", anomalia)):
+            has_eyes = True
             if not has_eyes:
                 self.anomalia.append(str(random.randint(1, 6))+" Olhos")
             else:
