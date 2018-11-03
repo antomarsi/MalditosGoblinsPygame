@@ -1,5 +1,5 @@
 import pygame
-from gui.Spritesheet import Spritesheet
+from gui.SpriteLoader import SpriteLoader
 
 SPRITES_BAR = {
     'bg_l': 'barBack_horizontalLeft',
@@ -15,9 +15,10 @@ class HealthBar(object):
         self.rect = pygame.Rect(rect)
         self.max_value = max_value
         self.value = max_value
-        self.spritesheet = Spritesheet.instance()
+        self.spritesheet = SpriteLoader.instance()
 
     def set_value(self, value):
         self.value = max(0, min(value, self.max_value))
 
     def update(self, surface):
+        pass

@@ -1,0 +1,165 @@
+{
+  "sprites": [
+    {
+      "name": "frame_top_left",
+      "x": 16,
+      "y": 40,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_top_middle",
+      "x": 49,
+      "y": 40,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_top_right",
+      "x": 82,
+      "y": 40,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_middle_left",
+      "x": 478,
+      "y": 24,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_middle_middle",
+      "x": 511,
+      "y": 24,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_middle_right",
+      "x": 544,
+      "y": 24,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_bottom_left",
+      "x": 478,
+      "y": 80,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_bottom_middle",
+      "x": 511,
+      "y": 80,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "frame_bottom_right",
+      "x": 544,
+      "y": 80,
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "cursor",
+      "x": 200,
+      "y": 108,
+      "width": 12,
+      "height": 17
+    },
+    {
+      "name": "cursor_click",
+      "x": 216,
+      "y": 108,
+      "width": 12,
+      "height": 17
+    },
+    {
+      "name": "button_left",
+      "x": 633,
+      "y": 23,
+      "width": 41,
+      "height": 28
+    },
+    {
+      "name": "button_middle",
+      "x": 674,
+      "y": 23,
+      "width": 48,
+      "height": 28
+    },
+    {
+      "name": "button_right",
+      "x": 716,
+      "y": 23,
+      "width": 41,
+      "height": 28
+    },
+    {
+      "name": "button_left",
+      "x": 633,
+      "y": 23,
+      "width": 41,
+      "height": 28
+    },
+    {
+      "name": "button_middle",
+      "x": 675,
+      "y": 23,
+      "width": 40,
+      "height": 28
+    },
+    {
+      "name": "button_right",
+      "x": 716,
+      "y": 23,
+      "width": 41,
+      "height": 28
+    },
+    {
+      "name": "button_left_hover",
+      "x": 633,
+      "y": 53,
+      "width": 41,
+      "height": 28
+    },
+    {
+      "name": "button_middle_hover",
+      "x": 675,
+      "y": 53,
+      "width": 40,
+      "height": 28
+    },
+    {
+      "name": "button_right_hover",
+      "x": 716,
+      "y": 53,
+      "width": 41,
+      "height": 28
+    },
+    {
+      "name": "button_left_clicked",
+      "x": 633,
+      "y": 83,
+      "width": 41,
+      "height": 28
+    },
+    {
+      "name": "button_middle_clicked",
+      "x": 675,
+      "y": 83,
+      "width": 40,
+      "height": 28
+    },
+    {
+      "name": "button_right_clicked",
+      "x": 716,
+      "y": 83,
+      "width": 41,
+      "height": 28
+    }
+  ]
+}

@@ -1,35 +1,42 @@
-import pygame as pg
-from gui.Button import Button
+import pygame
+from gui.Button import TextButton
 from gui.Colors import Colors
-
-BUTTON_STYLE = {"hover_color" : Colors.BLUE,
-                "clicked_color" : Colors.GREEN,
-                "clicked_font_color" : Colors.BLACK,
-                "hover_font_color" : Colors.ORANGE}
+from gui.Panel import Panel
 
 class TabTextArea(object):
     """A fairly straight forward button class."""
-    def __init__(self, rect, **kwargs):
-        self.rect = pg.Rect(rect)
-        self.tabs = {}
-        self.process_kwargs(kwargs)
-        self.current_text = None
+    def __init__(self, rect, skills = []):
+        self.rect = pygame.Rect(rect)
+        self.current_tab = None
+        self.process_skills(skills)
+        min_width = 0
+        for tab in self.tabs:
+            min_width += tab["button"].rect.width
+        if self.rect.width < min_width:
+            self.rect.width = min_width
+        self.panel = Panel((self.rect.x, self.rect.y+self.tabs[0]['button'].rect.height, self.rect.width, self.rect.height))
 
-    def process_kwargs(self,kwargs):
-        for key in kwargs:
-            button = Button((0,0,200,50), Colors.RED, self.change_text(key), key, **BUTTON_STYLE)
-            self.tabs[key] = {
-                'button': button,
-                'text': kwargs[key]}
-            if self.current_text is None:
-                self.change_text(key)
+    def process_skills(self, skills):
+        self.tabs = []
+        for idx, value in enumerate(skills):
+            button = TextButton((self.rect.x+(110*idx),self.rect.y,110,50), None, text="Level "+str(idx+1), **{'font': pygame.font.Font('font/GoblinOne.otf', 14)})
+            tab = {'button': button, 'skill': value}
+            self.tabs.append(tab)
+        self.change_text(0)
 
     def change_text(self, index):
-        self.current_text = self.tabs[index]["text"]
+        if self.current_tab is not None:
+            self.current_tab["button"].active = False
+        self.current_tab = self.tabs[index]
+        self.current_tab["button"].active = True
 
     def update(self, surface):
-        pass
+        self.panel.update(surface)
+        for tab in self.tabs:
+            tab["button"].update(surface)
 
     def event_loop(self, event):
-        for tab in self.tabs:
+        for idx, tab in enumerate(self.tabs):
             tab['button'].check_event(event)
+            if tab['button'].clicked:
+                self.change_text(idx)

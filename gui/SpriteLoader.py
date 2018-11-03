@@ -2,6 +2,7 @@ import pygame, json
 
 class SpriteLoader(object):
     __instance = None
+
     @staticmethod
     def instance():
         if not SpriteLoader.__instance:
