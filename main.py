@@ -30,7 +30,7 @@ class Game:
         self.screenSize = (720, 576)
 
         self.screen = pygame.display.set_mode(self.screenSize, pygame.DOUBLEBUF)
-        pygame.display.set_caption("Goblins Malditos - Goblin Generator v2 Remaster")
+        pygame.display.set_caption("Malditos Goblins - Gerador de Goblin v2 Remake")
         pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0))
 
         self.clock = pygame.time.Clock()
