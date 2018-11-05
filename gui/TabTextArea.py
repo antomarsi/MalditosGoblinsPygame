@@ -2,6 +2,7 @@ import pygame
 from gui.Button import TextButton
 from gui.Colors import Colors
 from gui.Panel import Panel
+from gui.Text import drawText
 
 class TabTextArea(object):
     """A fairly straight forward button class."""
@@ -32,40 +33,12 @@ class TabTextArea(object):
         self.current_tab = self.tabs[index]
         self.current_tab["button"].active = True
 
-    def drawText(self, surface, text, color, rect, font, aa=False, bkg=None):
-        rect = pygame.Rect(rect)
-        y = rect.top
-        lineSpacing = -2
-        # get the height of the font
-        fontHeight = font.size("Tg")[1]
-        while text:
-            i = 1
-            # determine if the row of text will be outside our area
-            if y + fontHeight > rect.bottom:
-                break
-            # determine maximum width of line
-            while font.size(text[:i])[0] < rect.width and i < len(text):
-                i += 1
-            # if we've wrapped the text, then adjust the wrap to the last word
-            if i < len(text):
-                i = text.rfind(" ", 0, i) + 1
-            # render the line and blit it to the surface
-            if bkg:
-                image = font.render(text[:i], 1, color, bkg)
-                image.set_colorkey(bkg)
-            else:
-                image = font.render(text[:i], aa, color)
-            surface.blit(image, (rect.left, y))
-            y += fontHeight + lineSpacing
-            # remove the text we just blitted
-            text = text[i:]
-        return text
     def update(self, surface):
         self.panel.update(surface)
         if self.current_tab:
+            drawText(surface, text=self.current_tab['skill']['name'], color=pygame.Color('white'), rect=(self.rect.left + 10, self.rect.y+self.tabs[0]['button'].rect.height + 10, self.rect.width - 20, self.rect.height - self.tabs[0]['button'].rect.height), font=self.font_button, aa=1, drop_shadow=(-1,1))
             title = self.font_button.render(self.current_tab['skill']['name'], 0, pygame.Color('white'), None)
-            surface.blit(title, (self.rect.left+10, self.rect.y+self.tabs[0]['button'].rect.height+10))
-            self.drawText(surface, self.current_tab['skill']['description'], pygame.Color('white'), (self.rect.left + 10, self.rect.y+self.tabs[0]['button'].rect.height + 10 + title.get_rect().height, self.rect.width - 20, self.rect.height - self.tabs[0]['button'].rect.height), self.font_text, 1)
+            drawText(surface, text=self.current_tab['skill']['description'], color=pygame.Color('white'),  rect=(self.rect.left + 10, self.rect.y+self.tabs[0]['button'].rect.height + 10 + title.get_rect().height, self.rect.width - 20, self.rect.height - self.tabs[0]['button'].rect.height), font=self.font_text, aa=1, drop_shadow=(-1,1), wrap=True)
         for tab in self.tabs:
             tab["button"].update(surface)
 

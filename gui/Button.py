@@ -1,5 +1,6 @@
 import pygame
 from gui.SpriteLoader import SpriteLoader
+from gui.Text import drawText
 
 class TextButton(object):
     """A fairly straight forward button class."""
@@ -13,7 +14,7 @@ class TextButton(object):
         self.clicked_text = None
         self.process_kwargs(kwargs)
         if self.text:
-            self.text = self.font.render(self.text,True, self.font_color)
+            self.text = drawText(surface=None, text=self.text, color=self.font_color, rect=self.rect, font=self.font, aa=self.aa, drop_shadow=(-1,1), center=True)
         self.render_button()
 
     def render_button(self):
@@ -48,7 +49,9 @@ class TextButton(object):
                     "sprite_clicked": ("button_left_clicked","button_middle_clicked","button_right_clicked"),
                     "call_on_release" : True,
                     "click_sound" : None,
-                    "hover_sound" : None}
+                    "hover_sound" : None,
+                    "aa": True
+                    }
         for kwarg in kwargs:
             if kwarg in settings:
                 settings[kwarg] = kwargs[kwarg]
