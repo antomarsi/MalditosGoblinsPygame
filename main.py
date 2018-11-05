@@ -10,10 +10,10 @@ from gui.TabTextArea import TabTextArea
 
 pygame.font.init()
 
-FONT_LRG = pygame.font.Font('font/GoblinOne.otf', 24)
-FONT_MED = pygame.font.Font('font/GoblinOne.otf', 14)
-FONT_SML = pygame.font.Font('font/GoblinOne.otf', 8)
-FONT_VR_SML = pygame.font.Font('font/GoblinOne.otf', 7)
+FONT_LRG = pygame.font.Font('font/ghouls_ghosts_and_goblins.ttf', 24)
+FONT_MED = pygame.font.Font('font/ghouls_ghosts_and_goblins.ttf', 17)
+FONT_SML = pygame.font.Font('font/ghouls_ghosts_and_goblins.ttf', 14)
+FONT_VR_SML = pygame.font.Font('font/ghouls_ghosts_and_goblins.ttf', 7)
 
 class Game:
     bg = None

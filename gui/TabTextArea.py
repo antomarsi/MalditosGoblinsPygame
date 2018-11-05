@@ -63,9 +63,9 @@ class TabTextArea(object):
     def update(self, surface):
         self.panel.update(surface)
         if self.current_tab:
-            title = self.font_button.render(self.current_tab['skill']['name'], 1, pygame.Color('white'), None)
+            title = self.font_button.render(self.current_tab['skill']['name'], 0, pygame.Color('white'), None)
             surface.blit(title, (self.rect.left+10, self.rect.y+self.tabs[0]['button'].rect.height+10))
-            self.drawText(surface, self.current_tab['skill']['description'], pygame.Color('white'), (self.rect.left + 10, self.rect.y+self.tabs[0]['button'].rect.height + 10 + title.get_rect().height, self.rect.width, self.rect.height), self.font_text, 1)
+            self.drawText(surface, self.current_tab['skill']['description'], pygame.Color('white'), (self.rect.left + 10, self.rect.y+self.tabs[0]['button'].rect.height + 10 + title.get_rect().height, self.rect.width - 20, self.rect.height - self.tabs[0]['button'].rect.height), self.font_text, 1)
         for tab in self.tabs:
             tab["button"].update(surface)
 

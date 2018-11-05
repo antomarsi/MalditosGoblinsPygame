@@ -51,22 +51,22 @@ class Equipment_Type(Enum):
     MAGIC = 3
 
 class Skills(DataBase):
-    MASTER_OF_WEAPONS = {'id': 1, 'name': 'Master of weapons', 'description': 'teste'}
-    BRUTAL_ATTACK = {'id': 2, 'name': 'Ataque Brutal', 'description': 'teste'}
-    FATAL_ATTACK = {'id': 3, 'name': 'Ataque Fatal', 'description': 'teste'}
-    TRACK = {'id': 4, 'name': 'Rastrear', 'description': 'teste'}
-    SHARPSHOOTER = {'id': 5, 'name': 'Tiro Certeiro', 'description': 'teste'}
-    FATAL_SHOOT = {'id': 6, 'name': 'Tiro Fatal', 'description': 'teste'}
-    STEAL = {'id': 7, 'name': 'Roubar', 'description': 'teste'}
-    SET_TRAP = {'id': 8, 'name': 'Armadilha', 'description': 'teste'}
-    STEALTH_ATTACK = {'id': 9, 'name': 'Ataque furtivo', 'description': 'teste'}
-    ENDURANCE = {'id': 10, 'name': 'Resistencia', 'description': 'teste'}
-    EXPLOSIVE_SUICIDE = {'id': 11, 'name': 'Suícidio Explosivo', 'description': 'teste'}
-    IMMUNITY = {'id': 12, 'name': 'Imunidade', 'description': 'teste'}
-    WARCRY = {'id': 13, 'name': 'Grito de Guerra', 'description': 'teste'}
-    MAGIC_MISSLE = {'id': 14, 'name': 'Tiro mágico', 'description': 'teste'}
-    HEAL = {'id': 15, 'name': 'Curar', 'description': 'teste'}
-    PETRIFY = {'id': 16, 'name': 'Petrificar', 'description': 'teste'}
+    MASTER_OF_WEAPONS = {'id': 1, 'name': 'Master of weapons', 'description': 'Você sempre rola+1 dado em todos os ataques que vocêfizer lutando com sua arma favorita (Escolha uma).'}
+    BRUTAL_ATTACK = {'id': 2, 'name': 'Ataque Brutal', 'description': ' Uma vez ao dia vocêpode fazer um ataque brutal, que causao dobro de dano na vítima.'}
+    FATAL_ATTACK = {'id': 3, 'name': 'Ataque Fatal', 'description': 'Uma vez ao dia você pode fazer um ataque fatal. Se acertar, a vitima deverá vencer um teste de Sorte (Dificuldade 5) ou morrerá imediatamente.'}
+    TRACK = {'id': 4, 'name': 'Rastrear', 'description': 'Com um teste bem sucedido de Conhecimento (dificuldade 3) você pode rastrear qualquer criatura.'}
+    SHARPSHOOTER = {'id': 5, 'name': 'Mira Certeira', 'description': ' Você ignora a proteçãodos seus oponentes.'}
+    FATAL_SHOOT = {'id': 6, 'name': 'Tiro Fatal', 'description': 'Uma vez ao dia você podefazer um ataque à distância fatal. Se acertar, a vitima deverá vencer um teste de Sorte (Dificuldade 5) ou morrerá imediatamente.'}
+    STEAL = {'id': 7, 'name': 'Roubar', 'description': 'Você pode roubar sem ser visto se vencer um teste resistido de Habilidade contra a vítima.'}
+    SET_TRAP = {'id': 8, 'name': 'Armar Armadilhas', 'description': 'Você pode fazer uma armadilha em qualquer lugar se tiver alguns materiais. A pessoa terá que passar em um teste de Sorte (Dificuldade 5) para não cair na sua armadilha.'}
+    STEALTH_ATTACK = {'id': 9, 'name': 'Ataque furtivo', 'description': 'Se você não foi visto, você pode fazer um ataque furtivo. Se acertar, a vitima deverá fazer um teste de Sorte (Dificuldade 5). Se ela falhar ela morrerá.'}
+    ENDURANCE = {'id': 10, 'name': 'Resistencia', 'description': 'Você pode fazer um testede Sorte (dificuldade 5) quando receber dano de fogo ou explosão de fogo. Se vencer, você não recebe dano.'}
+    EXPLOSIVE_SUICIDE = {'id': 11, 'name': 'Suícidio Explosivo', 'description': 'Usando sua arma, você pode se explodir e matar TODOS os que estiverem na área da explosão.'}
+    IMMUNITY = {'id': 12, 'name': 'Imunidade', 'description': 'Você nunca recebe dano com fogo ou explosão.'}
+    WARCRY = {'id': 13, 'name': 'Grito de Guerra', 'description': 'Uma vez ao dia você pode dar um grito que permitirá que todos seus aliados rolem 1 dado a mais para se esquivar até o final da batalha.'}
+    MAGIC_MISSLE = {'id': 14, 'name': 'Tiro mágico', 'description': 'Você pode gastar pontos de magia para fazer ataques a distância. Cada ponto gasto causará um ponto de dano (pode gastar mais para fazer ataque com mais dano).'}
+    HEAL = {'id': 15, 'name': 'Curar', 'description': 'Você pode gastar seus pontos de magia para curar seus aliados. Cada ponto de magia recupera um ponto de vitalidade.'}
+    PETRIFY = {'id': 16, 'name': 'Petrificar', 'description': 'Gastando 6 pontos de magia você pode paralisar qualquer criatura.'}
 
 class Weapons(DataBase):
     DAGGER = {'id': 1, 'name': 'Adaga', 'damage': 2, 'protection': 0, 'throwable': True, 'distance': False}
