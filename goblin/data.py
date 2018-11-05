@@ -51,22 +51,22 @@ class Equipment_Type(Enum):
     MAGIC = 3
 
 class Skills(DataBase):
-    MASTER_OF_WEAPONS = {'id': 1, 'name': 'Master of weapons', 'description': ''}
-    BRUTAL_ATTACK = {'id': 2, 'name': 'Master of weapons', 'description': ''}
-    FATAL_ATTACK = {'id': 3, 'name': 'Master of weapons', 'description': ''}
-    TRACK = {'id': 4, 'name': 'Master of weapons', 'description': ''}
-    SHARPSHOOTER = {'id': 5, 'name': 'Master of weapons', 'description': ''}
-    FATAL_SHOOT = {'id': 6, 'name': 'Master of weapons', 'description': ''}
-    STEAL = {'id': 7, 'name': 'Master of weapons', 'description': ''}
-    SET_TRAP = {'id': 8, 'name': 'Master of weapons', 'description': ''}
-    STEALTH_ATTACK = {'id': 9, 'name': 'Master of weapons', 'description': ''}
-    ENDURANCE = {'id': 10, 'name': 'Master of weapons', 'description': ''}
-    EXPLOSIVE_SUICIDE = {'id': 11, 'name': 'Master of weapons', 'description': ''}
-    IMMUNITY = {'id': 12, 'name': 'Master of weapons', 'description': ''}
-    WARCRY = {'id': 13, 'name': 'Master of weapons', 'description': ''}
-    MAGIC_MISSLE = {'id': 14, 'name': 'Master of weapons', 'description': ''}
-    HEAL = {'id': 15, 'name': 'Master of weapons', 'description': ''}
-    PETRIFY = {'id': 16, 'name': 'Master of weapons', 'description': ''}
+    MASTER_OF_WEAPONS = {'id': 1, 'name': 'Master of weapons', 'description': 'teste'}
+    BRUTAL_ATTACK = {'id': 2, 'name': 'Ataque Brutal', 'description': 'teste'}
+    FATAL_ATTACK = {'id': 3, 'name': 'Ataque Fatal', 'description': 'teste'}
+    TRACK = {'id': 4, 'name': 'Rastrear', 'description': 'teste'}
+    SHARPSHOOTER = {'id': 5, 'name': 'Tiro Certeiro', 'description': 'teste'}
+    FATAL_SHOOT = {'id': 6, 'name': 'Tiro Fatal', 'description': 'teste'}
+    STEAL = {'id': 7, 'name': 'Roubar', 'description': 'teste'}
+    SET_TRAP = {'id': 8, 'name': 'Armadilha', 'description': 'teste'}
+    STEALTH_ATTACK = {'id': 9, 'name': 'Ataque furtivo', 'description': 'teste'}
+    ENDURANCE = {'id': 10, 'name': 'Resistencia', 'description': 'teste'}
+    EXPLOSIVE_SUICIDE = {'id': 11, 'name': 'Suícidio Explosivo', 'description': 'teste'}
+    IMMUNITY = {'id': 12, 'name': 'Imunidade', 'description': 'teste'}
+    WARCRY = {'id': 13, 'name': 'Grito de Guerra', 'description': 'teste'}
+    MAGIC_MISSLE = {'id': 14, 'name': 'Tiro mágico', 'description': 'teste'}
+    HEAL = {'id': 15, 'name': 'Curar', 'description': 'teste'}
+    PETRIFY = {'id': 16, 'name': 'Petrificar', 'description': 'teste'}
 
 class Weapons(DataBase):
     DAGGER = {'id': 1, 'name': 'Adaga', 'damage': 2, 'protection': 0, 'throwable': True, 'distance': False}

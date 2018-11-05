@@ -25,7 +25,7 @@ class Game:
         pygame.init()
         pygame.display.init()
         print ("(done)")
-        
+
         self.rootParent = self
         self.screenSize = (720, 576)
 
@@ -46,11 +46,10 @@ class Game:
 
         self.buttons = {}
         self.init_buttons()
-        
 
     def reset_goblin(self):
         self.goblin = Goblin()
-        self.skills_textarea = TabTextArea((100, 100, 300, 200), self.goblin.skills)
+        self.skills_textarea = TabTextArea((100, 100, 300, 200), FONT_MED, FONT_SML, self.goblin.skills)
 
     def init_buttons(self):
         self.buttons['reset_goblin'] = TextButton((500,50,200,50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED})

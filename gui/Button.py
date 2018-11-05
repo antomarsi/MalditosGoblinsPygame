@@ -15,14 +15,14 @@ class TextButton(object):
         if self.text:
             self.text = self.font.render(self.text,True, self.font_color)
         self.render_button()
-    
+
     def render_button(self):
         self.button = self.get_image_button(self.sprite, True)
         if self.sprite_hover:
             self.button_hover = self.get_image_button(self.sprite_hover)
         if self.sprite_clicked:
             self.button_clicked = self.get_image_button(self.sprite_clicked)
-    
+
     def get_image_button(self, sprite, set_new_width = False):
         spritesheet = SpriteLoader.instance()
         button = pygame.Surface(self.rect.size, pygame.SRCALPHA, 32)
@@ -131,12 +131,12 @@ class SpriteButton(TextButton):
             else:
                 raise AttributeError("Button has no keyword: {}".format(kwarg))
         self.__dict__.update(settings)
-    
+
     def render_button(self):
         self.button = self.get_image_button()
         self.button_hover = self.get_image_button("_hover")
         self.button_clicked = self.get_image_button("_clicked")
-    
+
     def get_image_button(self, postfix = ""):
         spritesheet = SpriteLoader.instance()
         button = pygame.Surface(self.rect.size, pygame.SRCALPHA, 32)
@@ -148,7 +148,7 @@ class SpriteButton(TextButton):
             middle = spritesheet.get_image(self.button_sprite[1]+postfix)
             button.blit(pygame.transform.scale(middle, (self.rect.width - 82, 28)), (41, 0) )
         return button
-    
+
     def update(self, surface):
         button = self.button
         icon = self.icon
