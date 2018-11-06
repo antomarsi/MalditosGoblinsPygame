@@ -1,6 +1,7 @@
 import pygame
 from gui.SpriteLoader import SpriteLoader
 from gui.Text import drawText
+from gui.Utils import fastsaturation
 
 class TextButton(object):
     """A fairly straight forward button class."""
@@ -50,6 +51,7 @@ class TextButton(object):
                     "call_on_release" : True,
                     "click_sound" : None,
                     "hover_sound" : None,
+                    "disabled": False,
                     "aa": True
                     }
         for kwarg in kwargs:
@@ -60,6 +62,8 @@ class TextButton(object):
         self.__dict__.update(settings)
 
     def check_event(self, event):
+        if self.disabled:
+            return
         """The button needs to be passed events from your program event loop."""
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             self.on_click(event)
@@ -73,13 +77,13 @@ class TextButton(object):
                 self.function()
 
     def on_release(self,event):
-        if self.clicked and self.call_on_release and self.function is not None:
+        if self.clicked and self.call_on_release and self.function is not None and not self.disabled:
             self.function()
         self.clicked = False
 
     def check_hover(self):
         if self.rect.collidepoint(pygame.mouse.get_pos()):
-            if not self.hovered:
+            if not self.hovered and not self.disabled:
                 self.hovered = True
                 if self.hover_sound:
                     self.hover_sound.play()
@@ -90,10 +94,12 @@ class TextButton(object):
         button = self.button
         text = self.text
         self.check_hover()
-        if (self.clicked or self.active) and self.button_clicked:
+        if (self.clicked or self.active) and self.button_clicked and not self.disabled:
             button = self.button_clicked
-        elif self.hovered and self.button_hover:
+        elif self.hovered and self.button_hover and not self.disabled:
             button = self.button_hover
+        if self.disabled:
+            fastsaturation(button, 0)
         surface.blit(button, self.rect)
         if self.text:
             text_rect = text.get_rect(center=self.rect.center)

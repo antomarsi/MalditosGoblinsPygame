@@ -7,13 +7,14 @@ from gui.Colors import Colors
 from gui.Button import TextButton
 from gui.Panel import Panel
 from gui.TabTextArea import TabTextArea
+from gui.HealthBar import HealthBar
 
 pygame.font.init()
 
 FONT_LRG = pygame.font.Font('font/Kenney Pixel.ttf', 24)
 FONT_MED = pygame.font.Font('font/Kenney Pixel Square.ttf', 17)
 FONT_SML = pygame.font.Font('font/Kenney Pixel Square.ttf', 14)
-FONT_VR_SML = pygame.font.Font('font/Kenney Pixel.ttf', 7)
+FONT_VR_SML = pygame.font.Font('font/Kenney Pixel Square.ttf', 12)
 
 class Game:
     bg = None
@@ -50,9 +51,18 @@ class Game:
     def reset_goblin(self):
         self.goblin = Goblin()
         self.skills_textarea = TabTextArea((100, 100, 300, 200), FONT_MED, FONT_SML, self.goblin.skills)
+        self.health_bar = HealthBar((20, 20, 100, 20), self.goblin.max_health, **{'font': FONT_VR_SML})
 
     def init_buttons(self):
         self.buttons['reset_goblin'] = TextButton((500,50,200,50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED})
+    
+    def minus_goblin_health(self):
+        self.goblin.set_health(self.goblin.current_health-1)
+        self.health_bar.set_value(self.goblin.current_health)
+
+    def plus_goblin_health(self):
+        self.goblin.set_health(self.goblin.current_health+1)
+        self.health_bar.set_value(self.goblin.current_health)
 
     def update(self):
         self.screen.fill((0, 0, 0))
@@ -60,6 +70,7 @@ class Game:
         for button in self.buttons:
             self.buttons[button].update(self.screen)
         self.skills_textarea.update(self.screen)
+        self.health_bar.update(self.screen)
         self.update_cursor()
 
     def update_cursor(self):
@@ -69,12 +80,16 @@ class Game:
             self.screen.blit(self.cursor_click, pygame.mouse.get_pos())
 
     def event_loop(self, event):
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             self.running = False
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             self.click_holding = True
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             self.click_holding = False
+        elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
+            self.minus_goblin_health()
+        elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
+            self.plus_goblin_health()
         for button in self.buttons:
             self.buttons[button].check_event(event)
         self.skills_textarea.event_loop(event)

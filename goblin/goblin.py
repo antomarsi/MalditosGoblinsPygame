@@ -11,7 +11,8 @@ class Goblin(object):
         self.color = Color().get_data(random.randint(1, 6))
         self.ocupation = Ocupation().get_data(random.randint(1, 6))
         self.features = Features().get_data(random.randint(1, 6))
-        self.current_health = 4
+        self.max_health = 4
+        self.current_health = self.max_health
 
         for idx, skill in enumerate(self.ocupation['skills']):
             self.skills.append(Skills().get_data(skill))
@@ -39,4 +40,4 @@ class Goblin(object):
         pass
 
     def set_health(self, value):
-        self.current_health = max(0, min(value, 4))
+        self.current_health = max(0, min(value, self.max_health))
