@@ -111,62 +111,70 @@ class SpriteButton(TextButton):
         self.function = function
         self.clicked = False
         self.hovered = False
-        self.icon = None
-        self.button = None
         self.active = False
-        self.button_clicked = None
-        self.button_hover
+        self.hover_text = None
+        self.clicked_text = None
         self.process_kwargs(kwargs)
+        self.render_icon()
         self.render_button()
 
     def process_kwargs(self,kwargs):
-        settings = {"left_sprite" : None,
-                    "middle_sprite" : None,
-                    "right_sprite" : None,
-                    "left_sprite_hover" : None,
-                    "middle_sprite_hover" : None,
-                    "right_sprite_hover" : None,
-                    "left_sprite_clicked" : None,
-                    "middle_sprite_clicked" : None,
-                    "right_sprite_clicked" : None,
-                    "icon": None,
-                    "button_sprite": ("button_left","button_middle","button_right"),
+        settings = {"sprite_icon" : None,
+                    "sprite_icon_clicked" : None,
+                    "sprite_icon_hover" : None,
+                    "sprite": ("button_left","button_middle","button_right"),
+                    "sprite_hover": ("button_left_hover","button_middle_hover","button_right_hover"),
+                    "sprite_clicked": ("button_left_clicked","button_middle_clicked","button_right_clicked"),
                     "call_on_release" : True,
                     "click_sound" : None,
-                    "hover_sound" : None}
-        for kwarg in kwargs:
-            if kwarg in settings:
-                settings[kwarg] = kwargs[kwarg]
-            else:
-                raise AttributeError("Button has no keyword: {}".format(kwarg))
-        self.__dict__.update(settings)
+                    "hover_sound" : None,
+                    "disabled": False,
+                    }
+
+    def render_icon(self):
+        if self.sprite_icon:
+            self.icon = SpriteLoader.instance().get_image(self.sprite_icon)
+        if self.sprite_icon_clicked:
+            self.icon_clicked = SpriteLoader.instance().get_image(self.sprite_icon_clicked)
+        if self.sprite_icon_hover:
+            self.icon_hover = SpriteLoader.instance().get_image(self.sprite_icon_hover)
 
     def render_button(self):
-        self.button = self.get_image_button()
-        self.button_hover = self.get_image_button("_hover")
-        self.button_clicked = self.get_image_button("_clicked")
+        self.button = self.get_image_button(self.sprite, True)
+        if self.sprite_hover:
+            self.button_hover = self.get_image_button(self.sprite_hover)
+        if self.sprite_clicked:
+            self.button_clicked = self.get_image_button(self.sprite_clicked)
 
-    def get_image_button(self, postfix = ""):
+    def get_image_button(self, sprite, set_new_width = False):
         spritesheet = SpriteLoader.instance()
         button = pygame.Surface(self.rect.size, pygame.SRCALPHA, 32)
-        left = spritesheet.get_image(self.button_sprite[0]+postfix)
-        right = spritesheet.get_image(self.button_sprite[2]+postfix)
+        left = spritesheet.get_image(sprite[0])
+        right = spritesheet.get_image(sprite[2])
+        if set_new_width:
+            if self.rect.width < (left.get_width() + right.get_width()):
+                self.rect.width = (left.get_width() + right.get_width())
+            self.rect.height = left.get_height()
         button.blit(left, (0, 0))
-        button.blit(right, (self.rect.width-41, 0))
-        if (self.rect.width > 82):
-            middle = spritesheet.get_image(self.button_sprite[1]+postfix)
-            button.blit(pygame.transform.scale(middle, (self.rect.width - 82, 28)), (41, 0) )
+        button.blit(right, (self.rect.width-right.get_width(), 0))
+        if (self.rect.width > (left.get_width() + right.get_width())):
+            middle = spritesheet.get_image(sprite[1])
+            button.blit(pygame.transform.scale(middle, (self.rect.width - (left.get_width() + right.get_width()), middle.get_height())), (left.get_width(), 0) )
         return button
 
     def update(self, surface):
         button = self.button
-        icon = self.icon
         self.check_hover()
-        if (self.clicked and self.button_clicked) or self.active:
+        if (self.clicked or self.active) and self.button_clicked:
             button = self.button_clicked
         elif self.hovered and self.button_hover:
             button = self.button_hover
         surface.blit(button, self.rect)
         if self.icon:
+            icon = self.icon
+            if (self.clicked or self.active) and self.icon_clicked:
+                icon = self.icon_clicked
+            if (self.hovered or self.active) and self.icon_hover:
+                icon = self.icon_hover
             icon_rect = icon.get_rect(center=self.rect.center)
-            surface.blit(text, icon_rect)
+            surface.blit(icon, icon_rect)

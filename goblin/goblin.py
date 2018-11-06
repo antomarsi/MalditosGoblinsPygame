@@ -41,3 +41,10 @@ class Goblin(object):
 
     def set_health(self, value):
         self.current_health = max(0, min(value, self.max_health))
+
+    def set_level(self, value):
+        if value < 1:
+            return
+        self.level = value
+        if self.level > 3:
+            self.max_health = 4 + (self.level - 3)

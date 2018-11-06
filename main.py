@@ -8,13 +8,14 @@ from gui.Button import TextButton
 from gui.Panel import Panel
 from gui.TabTextArea import TabTextArea
 from gui.HealthBar import HealthBar
+from gui.ToolTip import ToolTip
 
 pygame.font.init()
 
 FONT_LRG = pygame.font.Font('font/Kenney Pixel.ttf', 24)
 FONT_MED = pygame.font.Font('font/Kenney Pixel Square.ttf', 17)
 FONT_SML = pygame.font.Font('font/Kenney Pixel Square.ttf', 14)
-FONT_VR_SML = pygame.font.Font('font/Kenney Pixel Square.ttf', 12)
+FONT_VR_SML = pygame.font.Font('font/Kenney Pixel Square.ttf', 10)
 
 class Game:
     bg = None
@@ -45,7 +46,9 @@ class Game:
         self.cursor_click = pygame.transform.scale(self.cursor_click, (24, 34))
         self.click_holding = False
 
-        self.buttons = {}
+        self.tooltip = ToolTip(text="Fazendo teste de tooltip", rect=(100, 50, 200, 50), max_width=200, font=FONT_VR_SML)
+
+        self.buttons = []
         self.init_buttons()
 
     def reset_goblin(self):
@@ -54,8 +57,12 @@ class Game:
         self.health_bar = HealthBar((20, 20, 100, 20), self.goblin.max_health, **{'font': FONT_VR_SML})
 
     def init_buttons(self):
-        self.buttons['reset_goblin'] = TextButton((500,50,200,50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED})
-    
+        self.buttons.append(TextButton((500,50,200, 50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED}))
+        self.buttons.append(TextButton((500, 150, 120, 50), self.level_up_goblin, text='Level Up', **{'font': FONT_MED}))
+
+    def level_up_goblin(self):
+        self.goblin.set_level(self.goblin.level+1)
+
     def minus_goblin_health(self):
         self.goblin.set_health(self.goblin.current_health-1)
         self.health_bar.set_value(self.goblin.current_health)
@@ -68,9 +75,10 @@ class Game:
         self.screen.fill((0, 0, 0))
         self.background.update(self.screen)
         for button in self.buttons:
-            self.buttons[button].update(self.screen)
+            button.update(self.screen)
         self.skills_textarea.update(self.screen)
         self.health_bar.update(self.screen)
+        self.tooltip.update(self.screen)
         self.update_cursor()
 
     def update_cursor(self):
@@ -91,7 +99,8 @@ class Game:
         elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
             self.plus_goblin_health()
         for button in self.buttons:
-            self.buttons[button].check_event(event)
+            button.check_event(event)
+        self.tooltip.check_hover()
         self.skills_textarea.event_loop(event)
 
     def run(self):
@@ -104,6 +113,6 @@ class Game:
             self.clock.tick(60)
         pygame.quit()
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     game = Game()
     game.run()

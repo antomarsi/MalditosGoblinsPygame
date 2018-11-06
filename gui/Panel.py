@@ -15,8 +15,7 @@ class Panel(object):
         if self.rect.width < (top_left.get_width() + top_right.get_width()):
             self.rect.width = (top_left.get_width() + top_right.get_width())
         if self.rect.height < (top_left.get_height() + bottom_left.get_height()):
-            self.rect.width = (top_left.get_height() + bottom_left.get_height())
-
+            self.rect.height = (top_left.get_height() + bottom_left.get_height())
         self.image.blit(top_left, (0, 0))
         self.image.blit(top_right, (self.rect.width - top_left.get_width(), 0))
         self.image.blit(bottom_left, (0, self.rect.height - bottom_left.get_height()))
