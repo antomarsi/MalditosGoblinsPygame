@@ -22,7 +22,12 @@ class ToolTip(object):
 
     def update(self, surface):
         if self.hovered and not self.disabled:
-            panel_rect = self.panel.image.get_rect(bottomleft=pygame.mouse.get_pos())
+            mouse_pos = pygame.mouse.get_pos()
+            panel_rect = self.panel.image.get_rect(bottomleft=mouse_pos)
+            if mouse_pos[1] - self.panel.image.get_height() < 0:
+                panel_rect.y = 0
+            elif mouse_pos[0] + self.panel.image.get_width() > surface.get_width():
+                panel_rect.x = surface.get_width() - panel_rect.width
             surface.blit(self.panel.image, panel_rect)
             text_rect = self.text.get_rect(center=panel_rect.center)
             surface.blit(self.text, text_rect)
