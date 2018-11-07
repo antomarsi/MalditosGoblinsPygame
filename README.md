@@ -23,4 +23,8 @@ python get-pip.py
 Para rodar o projeto, nada mais facil do que um simples `python main.py`
 
 ## To do:
-    [You can see the progress in trello](https://trello.com/b/4kJZYvzl/malditos-goblins-pygame)
+[Você pode ver o progresso no Trello](https://trello.com/b/4kJZYvzl/malditos-goblins-pygame)
+
+## Idéias futuras:
+    - Conexão multiplayer
+    - Tela dedicada para o Mestre (com geração de inimigos)
