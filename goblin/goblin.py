@@ -12,6 +12,8 @@ class Goblin(object):
         self.ocupation = Ocupation().get_data(random.randint(1, 6))
         self.features = Features().get_data(random.randint(1, 6))
         self.max_health = 4
+        self.max_mana = 8
+        self.current_mana = self.max_mana
         self.current_health = self.max_health
 
         for idx, skill in enumerate(self.ocupation['skills']):
@@ -22,15 +24,22 @@ class Goblin(object):
     @property
     def knowledge(self):
         return self.color['attributes'][0] + self.ocupacao['attributes'][0]
+
     @property
     def combat(self):
         return self.color['attributes'][1] + self.ocupacao['attributes'][1]
+
     @property
     def dexterity(self):
         return self.color['attributes'][2] + self.ocupacao['attributes'][2]
+
     @property
     def luck(self):
         return self.color['attributes'][3] + self.ocupacao['attributes'][3]
+
+    @property
+    def can_use_mana(self):
+        return Equipment_Type.MAGIC == self.ocupation['equip_type']
 
     def set_nome(self):
         self.nome = random.choice(['Sp', 'Cr', 'Bu', 'Ut', 'An', 'Om'])
@@ -38,6 +47,9 @@ class Goblin(object):
 
     def set_anomalies(self):
         pass
+
+    def set_mana(self, value):
+        self.current_mana = max(0, min(value, self.max_mana))
 
     def set_health(self, value):
         self.current_health = max(0, min(value, self.max_health))

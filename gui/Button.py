@@ -142,15 +142,15 @@ class IconButton(TextButton):
         if self.sprite_icon:
             self.icon = SpriteLoader.instance().get_image(self.sprite_icon)
             if self.scale != 1:
-                self.icon = pygame.transform.scale(self.icon, (self.icon.get_width()*2, self.icon.get_height()*2))
+                self.icon = pygame.transform.scale(self.icon, ((int)(self.icon.get_width()*self.scale), (int)(self.icon.get_height()*self.scale)))
         if self.sprite_icon_clicked:
             self.icon_clicked = SpriteLoader.instance().get_image(self.sprite_icon_clicked)
             if self.scale != 1:
-                self.icon_clicked = pygame.transform.scale(self.icon_clicked, (self.icon_clicked.get_width()*2, self.icon_clicked.get_height()*2))
+                self.icon_clicked = pygame.transform.scale(self.icon_clicked, ((int)(self.icon_clicked.get_width()*self.scale), (int)(self.icon_clicked.get_height()*self.scale)))
         if self.sprite_icon_hover:
             self.icon_hover = SpriteLoader.instance().get_image(self.sprite_icon_hover)
             if self.scale != 1:
-                self.icon_hover = pygame.transform.scale(self.icon_hover, (self.icon_hover.get_width()*2, self.icon_hover.get_height()*2))
+                self.icon_hover = pygame.transform.scale(self.icon_hover, ((int)(self.icon_hover.get_width()*self.scale), (int)(self.icon_hover.get_height()*self.scale)))
 
 
     def render_button(self):
@@ -181,7 +181,7 @@ class IconButton(TextButton):
                 middle = spritesheet.get_image(sprite[1])
                 button.blit(pygame.transform.scale(middle, (self.rect.width - (left.get_width() + right.get_width()), middle.get_height())), (left.get_width(), 0) )
         if self.scale != 1:
-            button = pygame.transform.scale(button, (button.get_width()*self.scale, button.get_height()*self.scale))
+            button = pygame.transform.scale(button, ((int)(button.get_width()*self.scale), (int)(button.get_height()*self.scale)))
             self.rect.width *= self.scale
             self.rect.height *= self.scale
         return button

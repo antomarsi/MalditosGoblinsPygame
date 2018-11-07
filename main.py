@@ -29,7 +29,7 @@ class Game:
         print ("(done)")
 
         self.rootParent = self
-        self.screenSize = (720, 576)
+        self.screenSize = (720, 494)
 
         self.screen = pygame.display.set_mode(self.screenSize, pygame.DOUBLEBUF)
         pygame.display.set_caption("Malditos Goblins - Gerador de Goblin v2 Remake")
@@ -40,30 +40,46 @@ class Game:
         print('Loading textures')
         self.sprite_loader.load('sprites/ui_big_pieces.png', 'sprites/ui_big_pieces.json')
         print('(done)')
+        self.mana_bar = None
+        self.use_magic = False
         self.reset_goblin()
-        self.background = Panel(((0, 0), self.screenSize))
         self.cursor = self.sprite_loader.get_image('cursor')
         self.cursor = pygame.transform.scale(self.cursor, (24, 34))
         self.cursor_click = self.sprite_loader.get_image('cursor_click')
         self.cursor_click = pygame.transform.scale(self.cursor_click, (24, 34))
         self.click_holding = False
+        self.fixed_gui = []
+        # background
+        self.fixed_gui.append(Panel(((0, 0), self.screenSize)))
+        # Temporary Goblin Avatar Frame
+        self.fixed_gui.append(Panel(((10, 10), (200, 237))))
+        # Temporary Stats Frame
+        self.fixed_gui.append(Panel(((10, 257), (200, 227))))
+        # Features
+        self.fixed_gui.append(Panel(((220, 80), (483, 167))))
+
 
         self.tooltip = ToolTip(text="Fazendo teste de tooltip", rect=(100, 50, 200, 50), max_width=200, font=FONT_VR_SML)
-
         self.buttons = []
         self.init_buttons()
 
     def reset_goblin(self):
         self.goblin = Goblin()
-        self.skills_textarea = TabTextArea((100, 100, 300, 200), FONT_MED, FONT_SML, self.goblin.skills)
-        self.health_bar = HealthBar((20, 20, 100, 20), self.goblin.max_health, **{'font': FONT_VR_SML})
+        self.magic_buttons = []
+        self.skills_textarea = TabTextArea((220, 257, 483, 200), FONT_MED, FONT_SML, self.goblin.skills)
+        self.health_bar = HealthBar((217, 20, 130, 20), self.goblin.max_health, **{'font': FONT_VR_SML})
+        self.mana_bar = HealthBar((217, 50, 130, 20), self.goblin.max_mana, **{'font': FONT_VR_SML})
+        self.use_magic = self.goblin.can_use_mana
+        self.magic_buttons.append(IconButton((353, 48, 0, 0), self.minus_goblin_health, **{'sprite_icon': 'icon_minus', 'sprite': 'round_button_green', 'scale': 1.5}))
+        self.magic_buttons.append(IconButton((380, 48, 0, 0), self.plus_goblin_health, **{'sprite_icon': 'icon_plus', 'sprite': 'round_button_green', 'scale': 1.5}))
+ 
 
     def init_buttons(self):
         print('Loading Buttons')
-        self.buttons.append(TextButton((500,50,200, 50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED}))
-        self.buttons.append(TextButton((500, 150, 120, 50), self.level_up_goblin, text='Level Up', **{'font': FONT_MED}))
-        self.buttons.append(IconButton((150, 20, 0, 0), self.minus_goblin_health, **{'sprite_icon': 'icon_minus', 'sprite': 'round_button_green'}))
-        self.buttons.append(IconButton((170, 20, 0, 0), self.plus_goblin_health, **{'sprite_icon': 'icon_plus', 'sprite': 'round_button_green', 'scale': 2}))
+        self.buttons.append(TextButton((540, 10, 170, 50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED}))
+        self.buttons.append(TextButton((565, 40, 120, 50), self.level_up_goblin, text='Level Up', **{'font': FONT_MED}))
+        self.buttons.append(IconButton((353, 18, 0, 0), self.minus_goblin_health, **{'sprite_icon': 'icon_minus', 'sprite': 'round_button_green', 'scale': 1.5}))
+        self.buttons.append(IconButton((380, 18, 0, 0), self.plus_goblin_health, **{'sprite_icon': 'icon_plus', 'sprite': 'round_button_green', 'scale': 1.5}))
         print('(done)')
 
     def level_up_goblin(self):
@@ -79,11 +95,16 @@ class Game:
 
     def update(self):
         self.screen.fill((0, 0, 0))
-        self.background.update(self.screen)
+        for fixed_gui in self.fixed_gui:
+            fixed_gui.update(self.screen)
         for button in self.buttons:
             button.update(self.screen)
         self.skills_textarea.update(self.screen)
         self.health_bar.update(self.screen)
+        if self.use_magic:
+            self.mana_bar.update(self.screen)
+            for magic_button in self.magic_buttons:
+                magic_button.update(self.screen)
         self.tooltip.update(self.screen)
         self.update_cursor()
 
@@ -108,6 +129,9 @@ class Game:
             button.check_event(event)
         self.tooltip.check_hover()
         self.skills_textarea.event_loop(event)
+        if self.use_magic:
+            for magic_button in self.magic_buttons:
+                magic_button.check_event(event)
 
     def run(self):
         self.running = True

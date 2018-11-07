@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import IntEnum
 
 class DataBase(object):
     @classmethod
@@ -42,13 +42,13 @@ class Ocupation(DataBase):
     THIEF = {'id': 3, 'name': 'Gatuno', 'attributes': (0,1,1,0), 'equip_type': 1, 'skills': [7, 8, 9]}
     LEADER = {'id': 4, 'name': 'Lider', 'attributes': (1,1,0,0), 'equip_type': 2, 'skills': [13, 2, 3]}
     PYRO = {'id': 5, 'name': 'Piromaníaco', 'attributes': (0,0,1,1), 'equip_type': 3, 'skills': [10, 11, 12]}
-    SHAMAN = {'id': 6, 'name': 'Xamã', 'attributes': (0,1,0,1), 'equip_type': 1, 'skills': [14, 15, 16]}
+    SHAMAN = {'id': 6, 'name': 'Xamã', 'attributes': (0,1,0,1), 'equip_type': 4, 'skills': [14, 15, 16]}
 
-class Equipment_Type(Enum):
+class Equipment_Type(IntEnum):
     LIGHT = 1
     HEAVY = 2
     EXPLOSIVE = 3
-    MAGIC = 3
+    MAGIC = 4
 
 class Skills(DataBase):
     MASTER_OF_WEAPONS = {'id': 1, 'name': 'Master of weapons', 'description': 'Você sempre rola+1 dado em todos os ataques que vocêfizer lutando com sua arma favorita (Escolha uma).'}
