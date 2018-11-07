@@ -223,6 +223,27 @@
       "y": 56,
       "width": 1,
       "height": 14
+    },
+    {
+      "name": "round_button_green",
+      "x": 16,
+      "y": 105,
+      "width": 14,
+      "height": 14
+    },
+    {
+      "name": "icon_plus",
+      "x": 83,
+      "y": 123,
+      "width": 10,
+      "height": 10
+    },
+    {
+      "name": "icon_minus",
+      "x": 99,
+      "y": 123,
+      "width": 10,
+      "height": 10
     }
   ]
 }

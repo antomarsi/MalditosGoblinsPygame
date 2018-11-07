@@ -4,7 +4,7 @@ from goblin.goblin import Goblin
 from PIL import Image
 from gui.SpriteLoader import SpriteLoader
 from gui.Colors import Colors
-from gui.Button import TextButton
+from gui.Button import TextButton, IconButton
 from gui.Panel import Panel
 from gui.TabTextArea import TabTextArea
 from gui.HealthBar import HealthBar
@@ -37,7 +37,9 @@ class Game:
 
         self.clock = pygame.time.Clock()
         self.sprite_loader = SpriteLoader.instance()
+        print('Loading textures')
         self.sprite_loader.load('sprites/ui_big_pieces.png', 'sprites/ui_big_pieces.json')
+        print('(done)')
         self.reset_goblin()
         self.background = Panel(((0, 0), self.screenSize))
         self.cursor = self.sprite_loader.get_image('cursor')
@@ -57,8 +59,12 @@ class Game:
         self.health_bar = HealthBar((20, 20, 100, 20), self.goblin.max_health, **{'font': FONT_VR_SML})
 
     def init_buttons(self):
+        print('Loading Buttons')
         self.buttons.append(TextButton((500,50,200, 50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED}))
         self.buttons.append(TextButton((500, 150, 120, 50), self.level_up_goblin, text='Level Up', **{'font': FONT_MED}))
+        self.buttons.append(IconButton((150, 20, 0, 0), self.minus_goblin_health, **{'sprite_icon': 'icon_minus', 'sprite': 'round_button_green'}))
+        self.buttons.append(IconButton((170, 20, 0, 0), self.plus_goblin_health, **{'sprite_icon': 'icon_plus', 'sprite': 'round_button_green', 'scale': 2}))
+        print('(done)')
 
     def level_up_goblin(self):
         self.goblin.set_level(self.goblin.level+1)
