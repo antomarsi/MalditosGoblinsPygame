@@ -9,9 +9,12 @@ from gui.Panel import Panel
 from gui.TabTextArea import TabTextArea
 from gui.HealthBar import HealthBar
 from gui.ToolTip import ToolTip
+from gui.Sprite import Sprite
+from gui.Text import drawText
 
 pygame.font.init()
 
+FONT_VR_LRG = pygame.font.Font('font/Kenney Pixel.ttf', 40)
 FONT_LRG = pygame.font.Font('font/Kenney Pixel.ttf', 24)
 FONT_MED = pygame.font.Font('font/Kenney Pixel Square.ttf', 17)
 FONT_SML = pygame.font.Font('font/Kenney Pixel Square.ttf', 14)
@@ -29,7 +32,7 @@ class Game:
         print ("(done)")
 
         self.rootParent = self
-        self.screenSize = (720, 494)
+        self.screenSize = (720, 524)
 
         self.screen = pygame.display.set_mode(self.screenSize, pygame.DOUBLEBUF)
         pygame.display.set_caption("Malditos Goblins - Gerador de Goblin v2 Remake")
@@ -54,11 +57,20 @@ class Game:
         # Temporary Goblin Avatar Frame
         self.fixed_gui.append(Panel(((10, 10), (200, 237))))
         # Temporary Stats Frame
-        self.fixed_gui.append(Panel(((10, 257), (200, 227))))
+        self.fixed_gui.append(Panel(((10, 257), (200, 257))))
+        icons = [
+            'combat_icon',
+            'combat_icon',
+            'combat_icon',
+            'combat_icon',
+            'combat_icon'
+        ]
+        for i in range(0, 5):
+            self.fixed_gui.append(Sprite((20, 267+(50*i)), 'slot_text_left'))
+            self.fixed_gui.append(Sprite((42, 275+(50*i)), icons[i]))
+            self.fixed_gui.append(Sprite((74, 267+(50*i)), 'slot_text_right'))
         # Features
         self.fixed_gui.append(Panel(((220, 80), (483, 167))))
-
-
         self.tooltip = ToolTip(text="Fazendo teste de tooltip", rect=(100, 50, 200, 50), max_width=200, font=FONT_VR_SML)
         self.buttons = []
         self.init_buttons()
@@ -70,9 +82,10 @@ class Game:
         self.health_bar = HealthBar((217, 20, 130, 20), self.goblin.max_health, **{'font': FONT_VR_SML})
         self.mana_bar = HealthBar((217, 50, 130, 20), self.goblin.max_mana, **{'font': FONT_VR_SML})
         self.use_magic = self.goblin.can_use_mana
+
         self.magic_buttons.append(IconButton((353, 48, 0, 0), self.minus_goblin_health, **{'sprite_icon': 'icon_minus', 'sprite': 'round_button_green', 'scale': 1.5}))
         self.magic_buttons.append(IconButton((380, 48, 0, 0), self.plus_goblin_health, **{'sprite_icon': 'icon_plus', 'sprite': 'round_button_green', 'scale': 1.5}))
- 
+
 
     def init_buttons(self):
         print('Loading Buttons')
@@ -105,8 +118,11 @@ class Game:
             self.mana_bar.update(self.screen)
             for magic_button in self.magic_buttons:
                 magic_button.update(self.screen)
+        for i, stats_value in enumerate([self.goblin.combat, self.goblin.knowledge, self.goblin.dexterity, self.goblin.luck, self.goblin.protection]):
+            drawText(surface = self.screen, text=(str)(stats_value), color=(255, 255, 255), rect=(76, 267+(i*50), 44, 40), font=FONT_VR_LRG, center=True)
         self.tooltip.update(self.screen)
         self.update_cursor()
+        
 
     def update_cursor(self):
         if not self.click_holding:

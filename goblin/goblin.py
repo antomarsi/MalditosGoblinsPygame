@@ -5,7 +5,7 @@ class Goblin(object):
     def __init__(self):
         self.level = 1
         self.skills = []
-        self.weapons = []
+        self.equips = []
         self.anomaly = []
         self.set_nome()
         self.color = Color().get_data(random.randint(1, 6))
@@ -15,6 +15,9 @@ class Goblin(object):
         self.max_mana = 8
         self.current_mana = self.max_mana
         self.current_health = self.max_health
+        list_equip = self.ocupation['equip_set'][random.randint(0, len(self.ocupation['equip_set'])-1 )]
+        for equip in list_equip:
+            self.equips.append(Equips().get_data(equip))
 
         for idx, skill in enumerate(self.ocupation['skills']):
             self.skills.append(Skills().get_data(skill))
@@ -23,23 +26,30 @@ class Goblin(object):
 
     @property
     def knowledge(self):
-        return self.color['attributes'][0] + self.ocupacao['attributes'][0]
+        return self.color['attributes'][0] + self.ocupation['attributes'][0]
 
     @property
     def combat(self):
-        return self.color['attributes'][1] + self.ocupacao['attributes'][1]
+        return self.color['attributes'][1] + self.ocupation['attributes'][1]
 
     @property
     def dexterity(self):
-        return self.color['attributes'][2] + self.ocupacao['attributes'][2]
+        return self.color['attributes'][2] + self.ocupation['attributes'][2]
 
     @property
     def luck(self):
-        return self.color['attributes'][3] + self.ocupacao['attributes'][3]
+        return self.color['attributes'][3] + self.ocupation['attributes'][3]
+
+    @property
+    def protection(self):
+        protection = 0
+        for equip in self.equips:
+            protection += equip['protection']
+        return protection
 
     @property
     def can_use_mana(self):
-        return Equipment_Type.MAGIC == self.ocupation['equip_type']
+        return Ocupation().SHAMAN['id'] == self.ocupation['id']
 
     def set_nome(self):
         self.nome = random.choice(['Sp', 'Cr', 'Bu', 'Ut', 'An', 'Om'])

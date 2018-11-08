@@ -23,7 +23,7 @@ def drawText(surface, text, color, rect, font, aa=False, bkg=None, drop_shadow=N
             shadow.blit(image, (drop_shadow[0] * -1, drop_shadow[1] * -1))
             image = shadow
         if surface is None:
-            return image
+            return image.convert_alpha()
         surface.blit(image, (rect.left, rect.top))
     elif wrap and overflow:
         texts = wrapline(text, font, rect.width)

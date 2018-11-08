@@ -244,6 +244,27 @@
       "y": 123,
       "width": 10,
       "height": 10
+    },
+    {
+      "name": "slot_text_left",
+      "x": 16,
+      "y": 370,
+      "width": 54,
+      "height": 40
+    },
+    {
+      "name": "slot_text_right",
+      "x": 71,
+      "y": 370,
+      "width": 44,
+      "height": 40
+    },
+    {
+      "name": "combat_icon",
+      "x": 210,
+      "y": 460,
+      "width": 28,
+      "height": 28
     }
   ]
 }

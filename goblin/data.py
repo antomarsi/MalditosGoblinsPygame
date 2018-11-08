@@ -2,11 +2,11 @@ from enum import IntEnum
 
 class DataBase(object):
     @classmethod
-    def get_data(cls, value):
+    def get_data(cls, value, attribute = 'id'):
         for name, attr in vars(cls).items():
             if name[:1] == '_':
                 continue
-            if (value == attr['id']):
+            if (value == attr[attribute]):
                 return attr
         raise Exception('Data not found')
 
@@ -36,19 +36,19 @@ class Anomalies(DataBase):
     GIANT_HANDS = {'id': 9, 'name': 'Mãos Gigantes'}
     TWO_HEADS = {'id': 10, 'name': 'Duas Cabeças'}
 
-class Ocupation(DataBase):
-    MERCENARY = {'id': 1, 'name': 'Mercenário', 'attributes': (1,0,1,0), 'equip_type': 2, 'skills': [1, 2, 3]}
-    HUNTER = {'id': 2, 'name': 'Caçador', 'attributes': (1,0,0,1), 'equip_type': 1, 'skills': [4, 5, 6]}
-    THIEF = {'id': 3, 'name': 'Gatuno', 'attributes': (0,1,1,0), 'equip_type': 1, 'skills': [7, 8, 9]}
-    LEADER = {'id': 4, 'name': 'Lider', 'attributes': (1,1,0,0), 'equip_type': 2, 'skills': [13, 2, 3]}
-    PYRO = {'id': 5, 'name': 'Piromaníaco', 'attributes': (0,0,1,1), 'equip_type': 3, 'skills': [10, 11, 12]}
-    SHAMAN = {'id': 6, 'name': 'Xamã', 'attributes': (0,1,0,1), 'equip_type': 4, 'skills': [14, 15, 16]}
+class Equipment_Set():
+    LIGHT = [[1,1], [1,6], [2], [3], [1,1,1,1]]
+    HEAVY = [[5, 6], [7, 8], [9, 9], [10], [5, 5, 11], [1,5, 11]]
+    EXPLOSIVE = [[12, 8], [12, 12], [13, 13, 13], [14], [12, 13], [15]]
+    MAGIC = [[16]]
 
-class Equipment_Type(IntEnum):
-    LIGHT = 1
-    HEAVY = 2
-    EXPLOSIVE = 3
-    MAGIC = 4
+class Ocupation(DataBase):
+    MERCENARY = {'id': 1, 'name': 'Mercenário', 'attributes': (1,0,1,0), 'equip_set': Equipment_Set.HEAVY, 'skills': [1, 2, 3]}
+    HUNTER = {'id': 2, 'name': 'Caçador', 'attributes': (1,0,0,1), 'equip_set': Equipment_Set.LIGHT, 'skills': [4, 5, 6]}
+    THIEF = {'id': 3, 'name': 'Gatuno', 'attributes': (0,1,1,0), 'equip_set': Equipment_Set.LIGHT, 'skills': [7, 8, 9]}
+    LEADER = {'id': 4, 'name': 'Lider', 'attributes': (1,1,0,0), 'equip_set': Equipment_Set.HEAVY, 'skills': [13, 2, 3]}
+    PYRO = {'id': 5, 'name': 'Piromaníaco', 'attributes': (0,0,1,1), 'equip_set': Equipment_Set.EXPLOSIVE, 'skills': [10, 11, 12]}
+    SHAMAN = {'id': 6, 'name': 'Xamã', 'attributes': (0,1,0,1), 'equip_set': Equipment_Set.MAGIC, 'skills': [14, 15, 16]}
 
 class Skills(DataBase):
     MASTER_OF_WEAPONS = {'id': 1, 'name': 'Master of weapons', 'description': 'Você sempre rola+1 dado em todos os ataques que vocêfizer lutando com sua arma favorita (Escolha uma).'}
@@ -68,22 +68,23 @@ class Skills(DataBase):
     HEAL = {'id': 15, 'name': 'Curar', 'description': 'Você pode gastar seus pontos de magia para curar seus aliados. Cada ponto de magia recupera um ponto de vitalidade.'}
     PETRIFY = {'id': 16, 'name': 'Petrificar', 'description': 'Gastando 6 pontos de magia você pode paralisar qualquer criatura.'}
 
-class Weapons(DataBase):
+class Equips(DataBase):
     DAGGER = {'id': 1, 'name': 'Adaga', 'damage': 2, 'protection': 0, 'throwable': True, 'distance': False}
-    SIMPLE_BOW = {'id': 1, 'name': 'Arco Simples', 'damage': 2, 'protection': 0, 'throwable': False, 'distance': True}
-    COMPOST_BOW = {'id': 1, 'name': 'Arco Composto', 'damage': 3, 'protection': 0, 'throwable': False, 'distance': True}
-    CROSSBOW = {'id': 1, 'name': 'Besta', 'damage':3, 'protection': 0, 'throwable': True, 'distance': True}
-    SWORD = {'id': 1, 'name': 'Espada', 'damage': 3, 'protection': 0, 'throwable': False, 'distance': False}
-    SHIELD = {'id': 1, 'name': 'Escudo', 'damage': 0, 'protection': 1, 'throwable': False, 'distance': False}
-    AXE = {'id': 1, 'name': 'Machado', 'damage': 4, 'protection': 0, 'throwable': False, 'distance': False}
-    HELM = {'id': 1, 'name': 'Elmo', 'damage': 0, 'protection': 1, 'throwable': False, 'distance': False}
-    THROW_AXE = {'id': 1, 'name': 'Machadinhas', 'damage': 3, 'protection': 0, 'throwable': True, 'distance': False}
-    GREATSWORD = {'id': 1, 'name': 'Espadona', 'damage': 5, 'protection': 0, 'throwable': False, 'distance': False}
-    ARMOR = {'id': 1, 'name': 'Armadura', 'damage': 0, 'protection': 1, 'throwable': False, 'distance': False}
-    PISTOL = {'id': 1, 'name': 'Pistola', 'damage': 4, 'protection': 0, 'throwable': False, 'distance': True}
-    EXPLOSIVE_CHICKEN = {'id': 1, 'name': 'Galinhas Explosivas', 'damage': 2, 'protection': 0, 'throwable': False, 'distance': False}
-    POWDER_BARREL = {'id': 1, 'name': 'Barril de Pólvora', 'damage': 5, 'protection': 0, 'throwable': False, 'distance': False}
-    CANNON = {'id': 1, 'name': 'Canhão', 'damage': 8, 'protection': 0, 'throwable': False, 'distance': True}
+    SIMPLE_BOW = {'id': 2, 'name': 'Arco Simples', 'damage': 2, 'protection': 0, 'throwable': False, 'distance': True}
+    COMPOST_BOW = {'id': 3, 'name': 'Arco Composto', 'damage': 3, 'protection': 0, 'throwable': False, 'distance': True}
+    CROSSBOW = {'id': 4, 'name': 'Besta', 'damage':3, 'protection': 0, 'throwable': True, 'distance': True}
+    SWORD = {'id': 5, 'name': 'Espada', 'damage': 3, 'protection': 0, 'throwable': False, 'distance': False}
+    SHIELD = {'id': 6, 'name': 'Escudo', 'damage': 0, 'protection': 1, 'throwable': False, 'distance': False}
+    AXE = {'id': 7, 'name': 'Machado', 'damage': 4, 'protection': 0, 'throwable': False, 'distance': False}
+    HELM = {'id': 8, 'name': 'Elmo', 'damage': 0, 'protection': 1, 'throwable': False, 'distance': False}
+    THROW_AXE = {'id': 9, 'name': 'Machadinhas', 'damage': 3, 'protection': 0, 'throwable': True, 'distance': False}
+    GREATSWORD = {'id': 10, 'name': 'Espadona', 'damage': 5, 'protection': 0, 'throwable': False, 'distance': False}
+    ARMOR = {'id': 11, 'name': 'Armadura', 'damage': 0, 'protection': 1, 'throwable': False, 'distance': False}
+    PISTOL = {'id': 12, 'name': 'Pistola', 'damage': 4, 'protection': 0, 'throwable': False, 'distance': True}
+    EXPLOSIVE_CHICKEN = {'id': 13, 'name': 'Galinhas Explosivas', 'damage': 2, 'protection': 0, 'throwable': False, 'distance': False}
+    POWDER_BARREL = {'id': 14, 'name': 'Barril de Pólvora', 'damage': 5, 'protection': 0, 'throwable': False, 'distance': False}
+    CANNON = {'id': 15, 'name': 'Canhão', 'damage': 8, 'protection': 0, 'throwable': False, 'distance': True}
+    CANNON = {'id': 16, 'name': 'Cajado', 'damage': 1, 'protection': 0, 'throwable': False, 'distance': True}
 
 class Critic_Test(DataBase):
     EXPLODED = {'id': 1, 'name': 'Explode!'}
