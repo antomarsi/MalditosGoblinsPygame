@@ -84,7 +84,7 @@ class Equips(DataBase):
     EXPLOSIVE_CHICKEN = {'id': 13, 'name': 'Galinhas Explosivas', 'damage': 2, 'protection': 0, 'throwable': False, 'distance': False}
     POWDER_BARREL = {'id': 14, 'name': 'Barril de Pólvora', 'damage': 5, 'protection': 0, 'throwable': False, 'distance': False}
     CANNON = {'id': 15, 'name': 'Canhão', 'damage': 8, 'protection': 0, 'throwable': False, 'distance': True}
-    CANNON = {'id': 16, 'name': 'Cajado', 'damage': 1, 'protection': 0, 'throwable': False, 'distance': True}
+    STAFF = {'id': 16, 'name': 'Cajado', 'damage': 1, 'protection': 0, 'throwable': False, 'distance': True}
 
 class Critic_Test(DataBase):
     EXPLODED = {'id': 1, 'name': 'Explode!'}

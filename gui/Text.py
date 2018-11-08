@@ -13,7 +13,7 @@ def drawText(surface, text, color, rect, font, aa=False, bkg=None, drop_shadow=N
     if not wrap:
         if bkg:
             image = font.render(text, 1, color, bkg)
-            image.set_colorkey(bkg)
+#            image.set_colorkey(bkg)
         else:
             image = font.render(text, aa, color)
         if center:

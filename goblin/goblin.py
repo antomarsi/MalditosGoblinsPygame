@@ -17,6 +17,7 @@ class Goblin(object):
         self.current_health = self.max_health
         list_equip = self.ocupation['equip_set'][random.randint(0, len(self.ocupation['equip_set'])-1 )]
         for equip in list_equip:
+            print(equip)
             self.equips.append(Equips().get_data(equip))
 
         for idx, skill in enumerate(self.ocupation['skills']):

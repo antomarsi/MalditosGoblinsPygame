@@ -1,6 +1,7 @@
 import pygame, os, time, random, math, datetime, numpy
 from pygame.locals import *
 from goblin.goblin import Goblin
+from goblin.AvatarGenerator import AvatarGenerator
 from PIL import Image
 from gui.SpriteLoader import SpriteLoader
 from gui.Colors import Colors
@@ -55,33 +56,37 @@ class Game:
         # background
         self.fixed_gui.append(Panel(((0, 0), self.screenSize)))
         # Temporary Goblin Avatar Frame
-        self.fixed_gui.append(Panel(((10, 10), (200, 237))))
+        self.fixed_gui.append(Panel(((10, 10), (200, 227))))
         # Temporary Stats Frame
-        self.fixed_gui.append(Panel(((10, 257), (200, 257))))
-        icons = [
-            'combat_icon',
-            'combat_icon',
-            'combat_icon',
-            'combat_icon',
-            'combat_icon'
+        self.fixed_gui.append(Panel(((10, 247), (130, 267))))
+        self.tooltips = []
+        stats_gui = [
+            {'icon': 'combat_icon', 'description': 'Combate: Serve para realizar ataques e defesas dentro do jogo.'},
+            {'icon': 'combat_icon', 'description': 'Conhecimento: Serve para descobrir se o personagem conhece alguma informação sobre determinado assunto.'},
+            {'icon': 'combat_icon', 'description': 'Habilidade: Serve para testar as capacidades físicas do personagem. Isto inclui testes que envolvem força, agilidade e resistência física.'},
+            {'icon': 'combat_icon', 'description': 'Sorte: Serve para testar tudo aquilo que é aleatório e comandado pelo destino'},
+            {'icon': 'combat_icon', 'description': 'Proteção: Serve para reduzir os pontos de ataque sofrido neste personagem.'},
         ]
         for i in range(0, 5):
             self.fixed_gui.append(Sprite((20, 267+(50*i)), 'slot_text_left'))
-            self.fixed_gui.append(Sprite((42, 275+(50*i)), icons[i]))
+            self.fixed_gui.append(Sprite((42, 275+(50*i)), stats_gui[i]['icon']))
             self.fixed_gui.append(Sprite((74, 267+(50*i)), 'slot_text_right'))
+            self.tooltips.append(ToolTip(text=stats_gui[i]['description'], rect=(20, 267+(50*i), 100, 40), max_width=200, font=FONT_VR_SML))
+        # Infos
+        self.fixed_gui.append(Panel(((220, 80), (153, 167))))
         # Features
-        self.fixed_gui.append(Panel(((220, 80), (483, 167))))
-        self.tooltip = ToolTip(text="Fazendo teste de tooltip", rect=(100, 50, 200, 50), max_width=200, font=FONT_VR_SML)
+        self.fixed_gui.append(Panel(((383, 80), (300, 167))))
         self.buttons = []
         self.init_buttons()
 
     def reset_goblin(self):
         self.goblin = Goblin()
         self.magic_buttons = []
-        self.skills_textarea = TabTextArea((220, 257, 483, 200), FONT_MED, FONT_SML, self.goblin.skills)
+        self.skills_textarea = TabTextArea((150, 257, 503, 227), FONT_MED, FONT_SML, self.goblin.skills)
         self.health_bar = HealthBar((217, 20, 130, 20), self.goblin.max_health, **{'font': FONT_VR_SML})
         self.mana_bar = HealthBar((217, 50, 130, 20), self.goblin.max_mana, **{'font': FONT_VR_SML})
         self.use_magic = self.goblin.can_use_mana
+        self.avatar = AvatarGenerator(((10, 10), (200, 227)), self.goblin)
 
         self.magic_buttons.append(IconButton((353, 48, 0, 0), self.minus_goblin_health, **{'sprite_icon': 'icon_minus', 'sprite': 'round_button_green', 'scale': 1.5}))
         self.magic_buttons.append(IconButton((380, 48, 0, 0), self.plus_goblin_health, **{'sprite_icon': 'icon_plus', 'sprite': 'round_button_green', 'scale': 1.5}))
@@ -90,13 +95,9 @@ class Game:
     def init_buttons(self):
         print('Loading Buttons')
         self.buttons.append(TextButton((540, 10, 170, 50), self.reset_goblin, text='Criar Goblin', **{'font': FONT_MED}))
-        self.buttons.append(TextButton((565, 40, 120, 50), self.level_up_goblin, text='Level Up', **{'font': FONT_MED}))
         self.buttons.append(IconButton((353, 18, 0, 0), self.minus_goblin_health, **{'sprite_icon': 'icon_minus', 'sprite': 'round_button_green', 'scale': 1.5}))
         self.buttons.append(IconButton((380, 18, 0, 0), self.plus_goblin_health, **{'sprite_icon': 'icon_plus', 'sprite': 'round_button_green', 'scale': 1.5}))
         print('(done)')
-
-    def level_up_goblin(self):
-        self.goblin.set_level(self.goblin.level+1)
 
     def minus_goblin_health(self):
         self.goblin.set_health(self.goblin.current_health-1)
@@ -120,9 +121,13 @@ class Game:
                 magic_button.update(self.screen)
         for i, stats_value in enumerate([self.goblin.combat, self.goblin.knowledge, self.goblin.dexterity, self.goblin.luck, self.goblin.protection]):
             drawText(surface = self.screen, text=(str)(stats_value), color=(255, 255, 255), rect=(76, 267+(i*50), 44, 40), font=FONT_VR_LRG, center=True)
-        self.tooltip.update(self.screen)
+        drawText(surface =self.screen, text="Status", color=pygame.Color('white'), rect=(10, 247, 130, 0), font=FONT_LRG, center=True, bkg=(90,86,80))
+        drawText(surface =self.screen, text="Status", color=pygame.Color('white'), rect=(10, 247, 130, 0), font=FONT_LRG, center=True, bkg=(90,86,80))
+        drawText(surface =self.screen, text="Avatar", color=pygame.Color('white'), rect=(10, 247, 130, 0), font=FONT_LRG, center=True, bkg=(90,86,80))
+        self.avatar.update(self.screen)
+        for tooltip in self.tooltips:
+            tooltip.update(self.screen)
         self.update_cursor()
-        
 
     def update_cursor(self):
         if not self.click_holding:
@@ -143,7 +148,8 @@ class Game:
             self.plus_goblin_health()
         for button in self.buttons:
             button.check_event(event)
-        self.tooltip.check_hover()
+        for tooltip in self.tooltips:
+            tooltip.check_hover()
         self.skills_textarea.event_loop(event)
         if self.use_magic:
             for magic_button in self.magic_buttons:
